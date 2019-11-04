@@ -140,7 +140,7 @@ const Projects = ({ projects, filter, sort }) => {
 class Home extends React.Component {
   state = {
     filter: {},
-    sort: 'starsTrending',
+    sort: 'stars',
   }
 
   canShow = project => {
