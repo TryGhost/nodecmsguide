@@ -1,8 +1,9 @@
 {
-  "name": "headlesscms",
-  "version": "2.0.0",
+  "name": "nodecmsguide",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "dev": "yarn start",
     "start": "react-static start",
     "stage": "react-static build --staging",
     "build": "react-static build",
