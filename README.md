@@ -1,6 +1,6 @@
-# headlesscms.org
+# nodecms.guide
 
-[headlesscms.org](http://www.headlesscms.org), a leaderboard of top open-source static site content management systems.
+[nodecms.guide](http://nodecms.guide), a leaderboard of top open-source static site content management systems.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ff98559c-c0a7-498d-9989-27f09b139e6f/deploy-status)](https://app.netlify.com/sites/headlesscms/deploys)
 
@@ -63,7 +63,7 @@ npm run build
 
 ## Netlify
 
-headlesscms.org is built and maintained by [Netlify](https://www.netlify.com), a hosting and automation service for static websites and apps.
+nodecms.guide is built and maintained by [Netlify](https://www.netlify.com), a hosting and automation service for static websites and apps.
 
 ## License
 This project is licensed under the [MIT license](http://opensource.org/licenses/MIT).

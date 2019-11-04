@@ -14,7 +14,7 @@ import fetchArchive from './scripts/fetch-archive'
 
 chokidar.watch('./content').on('all', () => reloadRoutes())
 
-const SITE_URL = 'https://headlesscms.org'
+const SITE_URL = 'https://nodecms.guide'
 
 function processMarkdown (markdown, key) {
   const { content, data } = grayMatter(markdown)
@@ -199,8 +199,8 @@ export default {
 
             <meta property="og:title" content="headlessCMS" />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://headlesscms.org/" />
-            <meta property="og:image" content="https://headlesscms.org/images/headlesscms.png" />
+            <meta property="og:url" content="https://nodecms.guide/" />
+            <meta property="og:image" content="https://nodecms.guide/images/headlesscms.png" />
             <meta property="og:description" content="headlessCMS is a leaderboard of the top Content Management Systems for JAMstack sites. Promoting a static approach to building websites." />
 
             <link href="//fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet" type="text/css" />

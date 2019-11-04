@@ -12,7 +12,7 @@ description: DatoCMS is a friendly, secure and powerful platform that enables ma
 DatoCMS is a friendly, secure and powerful platform that enables marketer, editorial or developer team to build complex backend in minutes and to bring any kind of content everywhere.
 
 ### Api first
-DatoCMS is an API-based CMS: all the content is accessible via API. We offer [Content Delivery API in GraphQL](https://www.datocms.com/docs/content-delivery-api/?utm_source=headlesscms.org&utm_medium=project&utm_campaign=headlesscms.org) and [Content Management API](https://www.datocms.com/docs/content-management-api/?utm_source=headlesscms.org&utm_medium=project&utm_campaign=headlesscms.org).
+DatoCMS is an API-based CMS: all the content is accessible via API. We offer [Content Delivery API in GraphQL](https://www.datocms.com/docs/content-delivery-api/?utm_source=nodecms.guide&utm_medium=project&utm_campaign=nodecms.guide) and [Content Management API](https://www.datocms.com/docs/content-management-api/?utm_source=nodecms.guide&utm_medium=project&utm_campaign=nodecms.guide).
 
 ### Take care of your content, we do the rest
 Don't care about servers, maintenance, security. Take care only about your content.
@@ -20,10 +20,10 @@ Don't care about servers, maintenance, security. Take care only about your conte
 ### Any kind of content
 With DatoCMS you can build and manage any kind of content. Literally. Forget templates or predefined structures: choose your own way to organize your content.
 
-** [Try it free!](https://dashboard.datocms.com/?utm_source=headlesscms.org&utm_medium=project&utm_campaign=headlesscms.org)
+** [Try it free!](https://dashboard.datocms.com/?utm_source=nodecms.guide&utm_medium=project&utm_campaign=nodecms.guide)
 
 ### Example App!
-** [DatoCMS comes with many example app!](https://dashboard.datocms.com/projects/browse/categories?utm_source=headlesscms.org&utm_medium=project&utm_campaign=headlesscms.org)
+** [DatoCMS comes with many example app!](https://dashboard.datocms.com/projects/browse/categories?utm_source=nodecms.guide&utm_medium=project&utm_campaign=nodecms.guide)
 
 ![DatoCMS](https://www.datocms.com/images/dashboard.gif)
 

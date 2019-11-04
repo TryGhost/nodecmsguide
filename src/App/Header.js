@@ -89,8 +89,8 @@ const Header = () => (
         </Head>
         <div className="hero">
           <h1>
-            <Link to="/" title="headlessCMS">
-              <img alt="headlessCMS" src={logo} />
+            <Link to="/" title="nodeCMS">
+              <img alt="nodeCMS" src={logo} />
             </Link>
           </h1>
           <h2>A List of Content Management Systems for JAMstack Sites</h2>
@@ -111,7 +111,7 @@ const Header = () => (
           </ShareButtonWrapper>
 
           <GitHubCorner
-            href="https://github.com/netlify/headlesscms.org"
+            href="https://github.com/tryghost/nodecms.guide"
             bannerColor="#24292e"
             size="90"
             svgStyle={{ zIndex: 300 }}
