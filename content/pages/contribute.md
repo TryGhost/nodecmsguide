@@ -4,7 +4,7 @@ title: Contribute
 
 # Contribute
 
-Everybody is welcome to contribute to headlessCMS.org, just fork the [GitHub repo](https://github.com/netlify/nodecms.guide) and send a pull request. Each Content Management System is a markdown file in the `site/content/projects` directory.
+Everybody is welcome to contribute to headlessCMS.org, just fork the [GitHub repo](https://github.com/tryghost/nodecms.guide) and send a pull request. Each Content Management System is a markdown file in the `site/content/projects` directory.
 
 We'll only accept pull requests adding new CMS' if they follow these rules:
 

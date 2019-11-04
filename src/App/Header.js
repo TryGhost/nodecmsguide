@@ -82,8 +82,8 @@ const Header = () => (
           <title>
             {`${
               title
-                ? `${title} | headlessCMS`
-                : "headlessCMS | Top Content Management Systems for JAMstack sites"
+                ? `${title} | nodeCMS`
+              : "nodeCMS | Top Content Management Systems for JAMstack sites"
             }`}
           </title>
         </Head>
@@ -111,7 +111,7 @@ const Header = () => (
           </ShareButtonWrapper>
 
           <GitHubCorner
-            href="https://github.com/tryghost/nodecms.guide"
+            href="https://github.com/tryghost/nodecmsguide"
             bannerColor="#24292e"
             size="90"
             svgStyle={{ zIndex: 300 }}
