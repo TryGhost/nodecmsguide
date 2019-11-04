@@ -1,6 +1,3 @@
 module.exports = {
-    plugins: ['ghost'],
-    extends: [
-        'plugin:ghost/node',
-    ]
-};
+  extends: 'react-tools'
+}
