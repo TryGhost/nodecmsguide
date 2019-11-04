@@ -110,16 +110,13 @@ const Header = () => (
             href="https://github.com/tryghost/nodecmsguide"
             bannerColor="#24292e"
             size="90"
-            svgStyle={{ zIndex: 300 }}
+            svgStyle={{ zIndex: 300, mixBlendMode: 'multiply' }}
           />
         </div>
         <div className="navbar">
           <div className="container">
             <div className="menu left">
               <ul>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
                 <li>
                   <Link to="/contribute">Contribute</Link>
                 </li>
