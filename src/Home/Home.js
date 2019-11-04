@@ -72,8 +72,8 @@ const StaticGenPromo = () => (
   <li className="project staticgen-promo">
     <h3>
       Also visit
-      <a href="https://www.staticgen.com" rel="noopener noreferrer" target="_blank">staticgen.com</a>
-      for a ranked list of open source static site generators!
+      <a href="https://www.headlesscms.org" rel="noopener noreferrer" target="_blank">headlesscms.org</a>
+      for a ranked list of headless content management systems!
     </h3>
   </li>
 )

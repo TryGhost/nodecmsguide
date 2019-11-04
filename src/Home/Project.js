@@ -178,9 +178,7 @@ const Project = styled(({
 
   return (
     <Link to={`/projects/${slug}`} className={`card ${className}`}>
-      <div className={`tag ${openSource ? '' : 'proprietary'}`}>
-        {openSource && 'open source'}
-      </div>
+      {openSource && <div className={`tag ${openSource ? '' : 'proprietary'}`}>open source</div>}
       {images && <img alt="" className="photos-inside" src={photos} />}
       <h4 className={`title ${title.length > 14 ? 'title-small' : ''}`}>{title}</h4>
       <OpenSourceStats {...stats} />

@@ -43,15 +43,12 @@ const ShareButton = styled(({ type, url, className, text }) => {
 `
 
 // swyx: temporary insert jamstack conf banner
-const JamstackConfBanner = ({ className }) => (
+const PromoBanner = ({ className }) => (
   <div className={className}>
-    <p>
-      Learn more about the JAMstack at{' '}
-      <a href="https://jamstackconf.com/sf">JAMstack Conf</a> in San Francisco — 16-18 October, 2019
-    </p>
+    <p>Insert promotional info here</p>
   </div>
 )
-const JamstackConfBannerStyled = styled(JamstackConfBanner)`
+const PromoBannerStyled = styled(PromoBanner)`
   background-color: #000;
   color: #fff;
   display: block;
@@ -77,7 +74,6 @@ const Header = () => (
   <RouteData
     render={({ title, shareUrl, shareText }) => (
       <div>
-        <JamstackConfBannerStyled />
         <Head>
           <title>
             {`${
@@ -93,7 +89,7 @@ const Header = () => (
               <img alt="nodeCMS" src={logo} />
             </Link>
           </h1>
-          <h2>A List of Content Management Systems for JAMstack Sites</h2>
+          <h2>A List of Node.js content management systems</h2>
 
           <ShareButtonWrapper>
             <ShareButton
@@ -129,11 +125,11 @@ const Header = () => (
                 </li>
                 <li>
                   <a
-                    href="https://jamstack.org/"
+                    href="https://nodejs.org/en/about/"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    What is JAMstack?
+                    What is Node.js?
                   </a>
                 </li>
                 <li>

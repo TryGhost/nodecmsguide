@@ -19,7 +19,7 @@ injectGlobal`
 
   body {
     margin: 0;
-    font-family: 'Roboto', 'sans-serif';
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     line-height: 1.6;
     color: #444;
@@ -29,7 +29,7 @@ injectGlobal`
 
 const AppStyles = styled.div`
   .notification {
-    background: #5f90ff;
+    background: #04ae84;
     box-sizing: border-box;
     color: white;
     padding: 16px 24px;
@@ -58,7 +58,7 @@ const AppStyles = styled.div`
   }
 
   body {
-    font-family: 'Roboto', 'sans-serif';
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     line-height: 1.6;
     color: #444;
@@ -106,13 +106,14 @@ const AppStyles = styled.div`
   }
 
   .logo {
-    font-family: 'Roboto Slab', 'serif';
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 700;
   }
 
   .hero {
-    background: #FF5F6D;
-    background: -webkit-linear-gradient(-45deg, #FF5F6D , #FFC371);
-    background: linear-gradient(-45deg, #FF5F6D , #FFC371);
+    background: #04ae84;
+    background: -webkit-linear-gradient(-45deg, #04ae84, #b9f1e3);
+    background: linear-gradient(-45deg, #04ae84, #b9f1e3);
     background-size: cover;
     text-align: center;
     padding: 60px 0 29px 0;
@@ -141,13 +142,13 @@ const AppStyles = styled.div`
 
   .staticgen-promo a,
   .text a {
-    color: #5f90ff;
+    color: #04ae84;
     text-decoration: none;
 
     &:link,
     &:active,
     &:hover {
-      color: #5f90ff;
+      color: #04ae84;
       text-decoration: none;
     }
   }
@@ -185,7 +186,7 @@ const AppStyles = styled.div`
   }
 
   .menu a:hover {
-    color: #5f90ff;
+    color: #04ae84;
   }
 
   .main, .container {
@@ -352,7 +353,7 @@ const AppStyles = styled.div`
   }
 
   .tag {
-    background: #5f90ff;
+    background: #04ae84;
     border-radius: 3px;
     color: white;
     display: inline-block;
@@ -478,7 +479,7 @@ const AppStyles = styled.div`
   }
 
   .primary-btn {
-    background: #5f90ff;
+    background: #04ae84;
     border-radius: 4px;
     border: none;
     color: white;

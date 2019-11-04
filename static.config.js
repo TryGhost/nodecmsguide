@@ -138,7 +138,7 @@ export default {
   getRoutes: async () => {
     const projects = await getProjects()
     const pages = await getPages()
-    const defaultShareText = 'Check out headlessCMS, a leaderboard of content management systems for JAMstack sites.'
+    const defaultShareText = 'Check out Node CMS Guide, a leaderboard of Node.js content management systems: '
     return [
       {
         path: '/',
@@ -156,7 +156,7 @@ export default {
           getData: () => ({
             ...project,
             shareUrl: `${SITE_URL}/projects/${project.slug}`,
-            shareText: `Check out ${project.title}, a headless CMS for JAMstack sites on the headlessCMS.org leaderboard.`,
+            shareText: `Check out ${project.title}, a leaderboard of Node.js content management systems: `,
           }),
         })),
       },
@@ -202,10 +202,6 @@ export default {
             <meta property="og:url" content="https://nodecms.guide/" />
             <meta property="og:image" content="https://nodecms.guide/images/headlesscms.png" />
             <meta property="og:description" content="headlessCMS is a leaderboard of the top Content Management Systems for JAMstack sites. Promoting a static approach to building websites." />
-
-            <link href="//fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet" type="text/css" />
-            <link href="//fonts.googleapis.com/css?family=Roboto:100,400,600,700" rel="stylesheet" type="text/css" />
-
             {renderMeta.styleTags}
           </Head>
           <Body>{children}</Body>
