@@ -5,9 +5,7 @@ import { differenceInMinutes, differenceInDays } from 'date-fns'
 import Octokit from '@octokit/rest'
 import twitterFollowersCount from 'twitter-followers-count'
 
-require(`dotenv`).config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+require('dotenv').config()
 
 const GITHUB_TOKEN = process.env.HEADLESS_CMS_GITHUB_TOKEN
 const TWITTER_CONSUMER_KEY = process.env.HEADLESS_CMS_TWITTER_CONSUMER_KEY
