@@ -8,7 +8,7 @@ Everybody is welcome to contribute to nodecms.guide, just fork the [GitHub repo]
 
 We'll only accept pull requests adding new CMS' if they follow these rules:
 
-- **Serverless:** No run time dependency. The CMS should work with sites that can be delivered straight from a CDN and hosted in places like S3, Netlify or GitHub Pages.
+- **Node.js application:** Built on top of Node.js in some shape or form
 - **Stick to the format:** Fill out all the same fields as the other CMS's in source/projects.
 - **Short description:** Keep all the details for the body text, keep the description for the overview page short and sweet.
 
