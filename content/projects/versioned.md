@@ -1,5 +1,6 @@
 ---
 title: Versioned
+repo: versioned/versioned-api
 homepage: https://www.versioned.io
 twitter: VersionedCMS
 opensource: "Yes"
