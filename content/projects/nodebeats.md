@@ -5,7 +5,7 @@ homepage: https://www.nodebeats.com/
 opensource: "Yes"
 typeofcms: "API Driven"
 supportedgenerators:
-  - Built In
+  - "Built In"
 description: An Open Source Content Management System built using MEAN Framework
 ---
 ## Nodebeats

@@ -5,7 +5,7 @@ homepage: https://apostrophecms.org/
 opensource: "Yes"
 typeofcms: "API Driven"
 supportedgenerators:
-  - Built In
+  - "Built In"
 description: Modern content management for the enterprise
 ---
 ## Apostrophe
