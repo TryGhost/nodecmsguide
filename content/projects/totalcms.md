@@ -1,6 +1,6 @@
 ---
 title: Total CMS
-repo: apostrophecms/apostrophe
+repo: totaljs/cms
 homepage: https://www.totaljs.com/cms/
 opensource: "Yes"
 typeofcms: "API Driven"
