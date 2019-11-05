@@ -8,7 +8,7 @@ import {
   RedditIcon,
 } from 'react-share'
 import GitHubCorner from 'react-github-corner'
-import logo from 'Images/headless-logo.svg'
+import logo from 'Images/logo.svg'
 
 const ShareButtonWrapper = styled.div`
   display: flex;
