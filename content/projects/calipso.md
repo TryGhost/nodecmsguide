@@ -3,6 +3,8 @@ title: Calipso
 repo: cliftonc/calipso
 opensource: "Yes"
 typeofcms: "API Driven"
+supportedgenerators:
+  - Built In
 description: Calipso is a simple NodeJS content management system based on Express, Connect & Mongoose
 ---
 ## Calipso

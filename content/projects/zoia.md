@@ -4,6 +4,8 @@ repo: xtremespb/zoia
 homepage: https://demo.zoiajs.org/
 opensource: "Yes"
 typeofcms: "API Driven"
+supportedgenerators:
+  - Built In
 description: Zoia Web Framework (Zoia.js) is based on Node.js, Express.js and MongoDB.
 ---
 ## Zoia

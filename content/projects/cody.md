@@ -4,6 +4,8 @@ repo: jcoppieters/cody
 homepage: http://cody-cms.org/
 opensource: "Yes"
 typeofcms: "API Driven"
+supportedgenerators:
+  - Built In
 description: Create your own web environment in Javascript with Cody and Node.js
 ---
 ## Cody

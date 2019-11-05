@@ -4,6 +4,8 @@ repo: apostrophecms/apostrophe
 homepage: https://www.totaljs.com/cms/
 opensource: "Yes"
 typeofcms: "API Driven"
+supportedgenerators:
+  - Built In
 description: Get a simple, clean, beautiful and design-driven Total.js Content Management System with a lot of impressive features
 ---
 ## Total CMS
