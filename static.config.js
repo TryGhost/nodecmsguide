@@ -160,7 +160,7 @@ export default {
           }),
         })),
       },
-      ...['about', 'contribute', 'contact'].map(key => ({
+      ...['contribute', 'contact'].map(key => ({
         path: key,
         component: 'src/Page',
         getData: () => {
