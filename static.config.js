@@ -195,7 +195,7 @@ export default {
 
             <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
 
-            <meta name="twitter:card" value="nodecms.guide is a leaderboard of Node.js content management systems." />
+            <meta name="twitter:card" value="summary" />
 
             <meta property="og:title" content="NodeCMSGuide" />
             <meta property="og:type" content="website" />
