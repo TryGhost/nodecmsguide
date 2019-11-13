@@ -14,7 +14,7 @@ The fastest Headless CMS to prototype, build, and deploy with. Agility CMS is a 
 
 Agility CMS was built by developers for developers to get things done faster and support their customers' needs. We aren't new to this. Agility CMS has been used for everything from small sites to huge ones, and from startups to large enterprises.
 
-## [Sign Up for Free (forever)!](https://account.agilitycms.com/sign-up?product=agility-free&leadsource=headlesscmsorg)
+## [Sign Up for Free (forever)!](https://account.agilitycms.com/sign-up?product=agility-free&leadsource=nodecmsguide)
 
 ![Agility CMS](https://cdn.agilitycms.com/content-manager/images/screenshots/for-devs-screenshot.png)
 
@@ -54,5 +54,3 @@ You can host and deploy your projects anywhere.
 - Compatible with any DevOps pipeline.
 - Need to know when content has been updated? We have webhooks for that.
 - Agility CMS works with static site generators and we are working towards providing native plugins for Gatsby, VuePress, Gridsome, and Jekyll.
-
-
