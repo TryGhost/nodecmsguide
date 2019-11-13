@@ -1,28 +1,27 @@
 # nodecms.guide
 
-[nodecms.guide](https://nodecms.guide), a leaderboard of top open-source static site content management systems.
+[nodecms.guide](https://nodecms.guide), a leaderboard of Node.js content management systems.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ff98559c-c0a7-498d-9989-27f09b139e6f/deploy-status)](https://app.netlify.com/sites/headlesscms/deploys)
 
 ## Contributing
 
-Missing a headless CMS here? Just fork the repo and add yours as a `<name>.md` in the
+Missing a Node.js CMS here? Just fork the repo and add yours as a `<name>.md` in the
 `content/projects` folder.
 
 Make sure to follow the following rules:
 
-*   **Truly headless:** This means your CMS must interact with content and data, and cannot be responsible for building the site.
-*   **JAMstack:** Your CMS has to work with the JAMstack methodology: JavaScript, API's and Markup.
-*   **Stick to the format:** Fill out all the same fields as the other CMS's in `content/projects`.
-*   **Short description:** Keep all the details for the body text, keep the description for the overview page short and sweet.
+- **Node.js application:** Built on top of Node.js in some shape or form
+- **Stick to the format:** Fill out all the same fields as the other CMS's in source/projects.
+- **Short description:** Keep all the details for the body text, keep the description for the overview page short and sweet.
 
 ## Usage
 
-Be sure that you have the latest node and npm installed, then clone this repository and run:
+Be sure that you have the latest node and yarn installed, then clone this repository and run:
 
 ```bash
-npm install
-npm start
+yarn
+yarn start
 ```
 
 In order to successfully retrieve Twitter followers and GitHub stars, you will need authentication
@@ -35,11 +34,11 @@ variables per the example below. If you are developing locally, you can set
 these in a `.env` file at the root of the repo.
 
 ```
-HEADLESS_CMS_GITHUB_TOKEN=examplekey123abc
-HEADLESS_CMS_TWITTER_CONSUMER_KEY=examplekey231abc
-HEADLESS_CMS_TWITTER_CONSUMER_SECRET=examplekey321abc
-HEADLESS_CMS_TWITTER_ACCESS_TOKEN_KEY=examplekey231abc
-HEADLESS_CMS_TWITTER_ACCESS_TOKEN_SECRET=examplekey321abc
+NODE_CMS_GITHUB_TOKEN=examplekey123abc
+NODE_CMS_TWITTER_CONSUMER_KEY=examplekey231abc
+NODE_CMS_TWITTER_CONSUMER_SECRET=examplekey321abc
+NODE_CMS_TWITTER_ACCESS_TOKEN_KEY=examplekey231abc
+NODE_CMS_TWITTER_ACCESS_TOKEN_SECRET=examplekey321abc
 ```
 
 GitHub and Twitter data is cached in the `.tmp` directory, and online in a Gist. If neither has data
