@@ -195,13 +195,13 @@ export default {
 
             <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
 
-            <meta name="twitter:card" value="headlessCMS is a leaderboard of the top Content Management Systems (CMS) for JAMstack sites. Promoting a static approach to websites." />
+            <meta name="twitter:card" value="nodecms.guide is a leaderboard of Node.js content management systems." />
 
-            <meta property="og:title" content="headlessCMS" />
+            <meta property="og:title" content="NodeCMSGuide" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://nodecms.guide/" />
-            <meta property="og:image" content="https://nodecms.guide/images/headlesscms.png" />
-            <meta property="og:description" content="headlessCMS is a leaderboard of the top Content Management Systems for JAMstack sites. Promoting a static approach to building websites." />
+            <meta property="og:image" content="https://nodecms.guide/images/nodecmsguide.png" />
+            <meta property="og:description" content="nodecms.guide is a leaderboard of Node.js content management systems." />
             {renderMeta.styleTags}
           </Head>
           <Body>{children}</Body>
