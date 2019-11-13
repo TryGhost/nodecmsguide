@@ -120,13 +120,14 @@ const AppStyles = styled.div`
   }
   .hero h1 {
     margin: 31px 0 0;
+    font-size: 36px;
+    filter: drop-shadow(0 0 0.75rem #04ae84);
   }
   .hero h1 img {
     height: auto;
     width: 400px;
     max-width: 80%;
     margin: 0 auto;
-    filter: drop-shadow(0 0 0.75rem #04ae84);
   }
   .hero h2 {
     margin: 0 auto 40px auto;

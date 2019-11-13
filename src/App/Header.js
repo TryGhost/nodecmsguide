@@ -85,8 +85,8 @@ const Header = () => (
         </Head>
         <div className="hero">
           <h1>
-            <Link to="/" title="nodeCMS">
-              <img alt="nodeCMS" src={logo} />
+            <Link to="/" title="nodeCMS" className="logo">
+              Node CMS Guide
             </Link>
           </h1>
           <h2>A List of Node.js content management systems</h2>
