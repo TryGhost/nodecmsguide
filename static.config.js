@@ -195,7 +195,7 @@ export default {
 
             <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
 
-            <meta name="twitter:card" value="summary" />
+            <meta name="twitter:card" value="summary_large_image" />
 
             <meta property="og:title" content="NodeCMSGuide" />
             <meta property="og:type" content="website" />
