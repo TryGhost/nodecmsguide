@@ -78,18 +78,18 @@ const Header = () => (
           <title>
             {`${
               title
-                ? `${title} | nodeCMS`
-              : "nodeCMS | Top Content Management Systems for JAMstack sites"
+                ? `${title} | NodeCMSGuide`
+              : "NodeCMSGuide | Node.js Content Management System leaderboard"
             }`}
           </title>
         </Head>
         <div className="hero">
           <h1>
-            <Link to="/" title="nodeCMS" className="logo">
+            <Link to="/" className="logo">
               Node CMS Guide
             </Link>
           </h1>
-          <h2>A List of Node.js content management systems</h2>
+          <h2>A Node.js Content Management System leaderboard</h2>
 
           <ShareButtonWrapper>
             <ShareButton
