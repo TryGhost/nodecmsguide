@@ -12,18 +12,14 @@ description: Contentful is a content management developer platform with an API a
 
 Contentful is a content management developer platform with an API at its core.
 
-### API-first, not browser-first
+### Launch digital products faster
 
-All the created content is accessible via an API. Bring your content anywhere, display it as you like.
+Content infrastructure helps digital teams work better together by unifying content in one hub, so marketers and developers can build simultaneously.
 
-### Scalable cloud, not on-premises setup
+### Create compelling experiences
 
-Your content is stored on our servers. They are fast, safe, secure, and we take care of all the maintenance.
+With the freedom to use their favorite tools and frameworks, developers can focus on building leading-edge websites, apps and omnichannel experiences.
 
-### Content-centric, not page-centric
+### Store and edit content in one hub
 
-Organize and structure the content your way. Build a custom content model instead of dealing with fixed, predefined templates.
-
-### Just the content, no presets or templates
-
-Contentful delivers the content, and you design around it. We separate the content from presentation — it's most flexible this way.
+Editors have full control of content in an intuitive web app. Marketers can test and refine, publishing changes to every platform from one interface.

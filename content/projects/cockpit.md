@@ -7,7 +7,16 @@ opensource: "Yes"
 typeofcms: "API Driven"
 supportedgenerators:
   - All
-description: Cockpit is a self-hosted headless and api-driven CMS
+description: Simple Content Platform to manage any structured content
 ---
+
 ## Cockpit
-Cockpit is awesome if you need a flexible content structure but don't want to be limited in how to use the content. Cockpit is a perfect match if you want to support multiple devices or need a content management UI for static site builders. Build unique applications and let Cockpit feed them with content.
+
+Cockpit is a headless CMS with an API-first approach that puts content first. It is designed to simplify the process of publication by separating content management from content consumption on the client side.
+
+Cockpit is focusing just on the back-end work to manage content. Rather than worry about delivery of content through pages, its goal is to provide structured content across different channels via a simple API.
+
+### Key features
+- Manage flexible content models. There are no pre-defined content models. Define the content model yourself.
+- Uncluttered UI. Cockpit offers you a modern and simple user interface.
+- One system, consume it the way you want. Receive your content via a simple API.

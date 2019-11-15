@@ -6,7 +6,7 @@ opensource: "No"
 typeofcms: "API Driven"
 supportedgenerators:
   - All
-description: Comfortable is an cloud-based headless CMS, dedicated to simplicity, structure and speed.
+description: Easy and fast content API for websites and apps. Build websites quicker, get started in minutes.
 images:
   - path: /images/comfortable-1.jpg
   - path: /images/comfortable-2.jpg
@@ -14,13 +14,16 @@ images:
 ---
 ## Comfortable
 
-Comfortable is an API-first CMS that integrates with any platform and framework to build websites, apps, or for the Internet of Things. The API is easy, intuitive and fast to connect.
+Comfortable is a headless CMS that enables fast and easy content editing for websites and apps.
 
-### Content Collections
-Aggregate, filter and sort any content or data in collections. You can use them as endpoints and make it easy for editors to find and manage content.
+### Deliver content anywhere
 
-### Powerful and easy query API
-Simply ask for the data your application needs, join information, form structure and follow references. Query responses are cached in a global CDN.
+Using an API for content enables you to integrate a CMS anywhere. And in several places at the same time. Manage everything in one place and serve it to your website, app, E-Mail campaign, or even the smart fridge.
 
-### Content Tree
-All of your content, e.g. collections or single documents can be organized in a content tree. That enables editors and marketers to find and manage content quick and easy.
+### Use your favorite frameworks and tools
+
+Comfortable works with any App-Framework, Static Site Generator or even plain templates. If you have your own custom CMS, you can use the API as content engine.
+
+### Elegant Authoring
+
+Manage products and lists, the contents of your website or app, write a personal blog, host and handle all your assets in one place. Comfortable lets you do all of that in a convenient and intuitive way.

@@ -7,22 +7,25 @@ opensource: "Yes"
 typeofcms: "API Driven"
 supportedgenerators:
   - All
-description: Contenta is the community driven API distribution for Drupal 8.
+description: Contenta is an API-First Drupal distribution.
 ---
-## Contenta is a decoupled Drupal 8 distribution
 
-Contenta is the community driven API distribution for Drupal 8, and provides the robustness and flexibility of Drupal in a friendly API-first package.
+## Contenta
 
-It provides a standard platform that is API ready along with demo content and example front-end applications. Contenta intends to ease the pain of using, or simply trying, decoupled Drupal.
+Contenta is an API-First Drupal distribution. It’s all about the content.
 
-## Free Open Source Software to be hosted anywhere
+### API ready
 
-Contenta is based off of Drupal, which is a powerful, robust content management system built on object-oriented PHP. Drupal runs websites such as whitehouse.gov, grammy.com, harvard.edu, and millions more.
+An HTTP API provided ready to use with full auto-generated documentation.
 
-## API ready with excellent documentation.
+### Example content
 
-A HTTP API is provided ready to use with full auto-generated documentation, and a Contenta knowledge hub is manually curated to provide a list of excellent resources on decoupled Drupal.
+Example content to help you understand how all works. This can be removed all in one click.
 
-## Example (and Open Source) API Consumers
+### Example consumers
 
-Many example consumers in different technologies such as Angular, Elm, React, Ember, Ionic, and Vue show you how easy is to build a Contenta project.
+Many consumers in different technologies can show you how easy is to build a Contenta project.
+
+### By the community
+
+A community of experts is ready to guide with Contenta and solve common challenges together.
