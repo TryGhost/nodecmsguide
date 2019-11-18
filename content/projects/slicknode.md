@@ -7,51 +7,23 @@ opensource: "No"
 typeofcms: "API Driven"
 supportedgenerators:
   - All
-description: Slicknode is a GraphQL based headless CMS + application framework for advanced digital experiences
+description: The GraphQL CMS and backend that automates the grunt work while keeping you in control. For everyone that loves to ship better software in less time.
 images:
   - path: /images/slicknode-1.png
 ---
+
 ## Slicknode
 
-[Slicknode](https://slicknode.com) is a GraphQL based headless content management system for fast paced development of advanced digital experiences. 
-
-### Features:
-
--   Instant **GraphQL API** on managed cloud infrastructure
--   Powerful [data modeling features](https://slicknode.com/docs/data-modeling/introduction/) with
-    [relations](https://slicknode.com/docs/data-modeling/relations/), 
-    [interfaces](https://slicknode.com/docs/data-modeling/interfaces/introduction/), 
-    [enum types](https://slicknode.com/docs/data-modeling/enum-types/) etc.
--   Automatic **database migrations**
--   [Declarative permission model](https://slicknode.com/docs/auth/authorization/) (multi tenant SaaS, customer facing apps, enterprise etc.)
--   Use with any API and database
--   **Multi-Stage** development workflow
--   Works with your favorite technologies (React, Angular, Vue, Javascript, iOS, Android etc.)
--   **Headless CMS**
--   [Extensible](https://slicknode.com/docs/extensions/) with custom code (Javascript, TypeScript, Flow etc.)
+The GraphQL CMS and backend that automates the grunt work while keeping you in control. For everyone that loves to ship better software in less time.
 
 ### Why Slicknode?
 
-Slicknode aims to be the most flexible CMS with the best development workflow:
- 
-Define the data model on your local machine using GraphQL and then sync the changes to the cloud. 
-The schema lives in your local codebase to allow management via git (code review, merge, clone, revert etc.),
-the content lives in a highly scalable cloud infrastructure.
+Traditional software is not equipped to satisfy the increasing demands in a highly competitive marketplace. Combining data from a vast array of data sources with custom functionality is expensive and takes a lot of time. Slicknode automates this process and gives you the flexibility you need.
 
-### Modular Architecture
+- Reduce costs by letting Slicknode automate the grunt work so you can invest in what gives you the competitive advantage.
+- Reduce time to market and create better software at unparalleled speed.
+- Simplify workflows by having one central data HUB that can deliver data and content to any channel (Web, Mobile, IoT etc.)
 
-Slicknode is modular from the core. Build functionality once and reuse it across all your projects without
-changes. 
+### Ready to try it out?
 
-### Extensible
-
-- Add **existing data sources** from your own IT systems or 3rd party APIs
-- Add **custom business logic** with serverless functions
-- Merge **multiple GraphQL APIs** into one unified data graph
-
-### Scalable Content Infrastructure
-
-Slicknode takes care of provisioning, monitoring and maintaining a highly scalable cloud infrastructure, 
-so you don't have to.
-
-**[> Get Started Here](https://slicknode.com/docs/quickstart/)**
+Start building applications for free (no credit card required). [Get Started](https://console.slicknode.com/register)

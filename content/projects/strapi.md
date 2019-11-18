@@ -7,43 +7,43 @@ opensource: "Yes"
 typeofcms: "API Driven"
 supportedgenerators:
   - All
-description: Strapi is an open sourced Headless CMS Front-End Developers Love. It's more than a Node.js Framework and more than a Headless CMS, it saves API development time through a beautiful admin panel anyone can use.
+description: Open source Node.js Headless CMS to easily build customisable APIs.
 images:
   - path: /images/strapi-content-type-builder.png
   - path: /images/strapi-content-manager.png
 ---
-## Building self-hosted, customizable and performant Content APIs has never been easier.
 
-Strapi is an open sourced Headless CMS Front-End Developers Love. It's more than a Node.js Framework and more than a Headless CMS, it saves API development time through a beautiful admin panel anyone can use.
+## About Strapi
 
-### Open source
+Strapi is a free and open source headless CMS delivering your content anywhere you need.
 
-Free and open source, forever. The entire codebase is available on GitHub and is maintained by hundreds of contributors.
+- **Keep control over your data**. With Strapi, you know where your data is stored, and you keep full control at all times.
+- **Self hosted**. You can host and scale Strapi projects the way you want. You can choose any hosting platform you want: AWS, Netlify, Heroku, a VPS, or a dedicated server. You can scale as you grow, 100% independent.
+- **Database agnostic**. You can choose the database you prefer. Strapi works with SQL & NoSQL databases: MongoDB, PostgreSQL, MySQL, MariaDB, and SQLite.
+- **Customizable**. You can quickly build your logic by fully customizing APIs, routes, or plugins to fit your needs perfectly.
 
-### Self-hosted
+## Getting Started
 
-Security is crucial for companies. Host your data safely, on your own servers. GDPR compliant.
+[Read the Getting Started tutorial](https://strapi.io/documentation/3.0.0-beta.x/getting-started/quick-start.html)
 
-### Customizable
+### ⏳ Installation
 
-Each project requires specific requirements. Easily customize the admin panel as well as the API.
+Install Strapi with this **Quickstart** command to create a Strapi project instantly:
 
-### RESTful or GraphQL
+- (Use **yarn** to install the Strapi project (recommended). [Install yarn with these docs](https://yarnpkg.com/lang/en/docs/install/).)
 
-Consume the API from any client (React, Vue, Angular), mobile apps or even IoT, using REST or GraphQL.
+```bash
+yarn create strapi-app my-project --quickstart
+```
 
-### 100% JavaScript
+**or**
 
-One language to rule them all. Use JavaScript everywhere: both for your front-end and your Headless CMS.
+- (Use npm/npx to install the Strapi project.)
 
-### Extensible by design
+```bash
+npx create-strapi-app my-project --quickstart
+```
 
-Plugins system included. Install auth system, content management, custom plugins, and more, in seconds.
+This command generates a brand new project with the default features (authentication, permissions, content management, content type builder & file upload). The **Quickstart** command installs Strapi using a **SQLite** database which is used for prototyping in development.
 
-### Authentications & Permissions
-
-Secure your endpoints by allowing or not allowing users to access your API by role.
-
-### Get Started
-
-Get started: [Getting Started Docs](https://strapi.io/documentation/3.x.x/getting-started/quick-start.html)
+Enjoy 🎉

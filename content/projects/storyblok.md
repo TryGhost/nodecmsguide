@@ -11,16 +11,20 @@ description: Headless & API-based CMS as a Service. Not only a CMS for your edit
 
 ## What is Storyblok
 
-Storyblok builds a bridge between content creators and developers - without to force the developer into a technology. The main mission of Storyblok is to make the web faster - in development and maintenance! We want the content creator to write articles, stories and even build landing pages in one platform and still allow the developers to access the information in well structured content from an performant API.
+Storyblok provides the infrastructure to create and manage content utilizing our frontend app or management API. It is not coupled to one specific presentation layer, such as websites. Modern web frameworks are built out of components. Storyblok provides the right content structure to fill those components with data using a nestable data structure.
 
-### For whom?
+## How it works
 
-Storyblok is for developers who like to take their time and do things right, building out their HTML, CSS, and JavaScript by hand. This is not a site builder or some sort of design tool.
+Your developers can now focus on your project: websites, e-commerce, mobile apps, digital showrooms and even your next big thing.
 
-### For what?
+- Define your Models: Define the schema of your content. This includes creating a content type, components and adding the right fields such as `text`, `date`, `image` or even [custom field types](https://www.storyblok.com/docs/Guides/Creating-a-field-type-plugin).
 
-Storyblok was built to be unbelievable scalable and flexible, to the point that even its own feature set can adapt perfectly to the scope of the project (have a look at the Apps section in your Space). Whether you’re building a portfolio site or a big corporate site, Storyblok is a scalable and flexible choice for that. You can even use Storyblok in existing projects and enrich the content of any system with editorial content.
+- Create your content: Once the required content types and components are ready, any user can add content by filling up your fields in [our editor](https://www.storyblok.com/docs/the-editor).
 
-### Tech Specs
+- Use your content: The content, once saved and published, can be loaded on your website, mobile app, or any other channel using our Content Delivery API. The same content can be reused for any platform.
 
-Storyblok is a headless, API-based SaaS CMS built with Ruby on Rails and VueJS as it’s core, but you don’t need to know Ruby or VueJs to use it. You can go with your favorite technologies and build awesome stuff with us. If you need more than a simple to use Content Delivery API and looking for a full stack you can still opt-in our Cloud Rendering Service without losing the access to your data at all.
+## Key Concept
+
+The key concepts behind Storyblok are inspired by the [BEM methodology](http://getbem.com/). One way this manifests itself is through the relationship between developer and editor.
+
+Understanding the basic terminologies described on [our key concept page](https://www.storyblok.com/docs/the-key-concept) will make it easier for you to work with Storyblok.

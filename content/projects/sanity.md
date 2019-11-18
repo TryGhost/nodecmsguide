@@ -13,42 +13,14 @@ images:
   - path: /images/sanity-hosted-backend.png
 ---
 
-Sanity is a hosted backend for structured content with a real-time API, globally distributed CDN, and a powerful, but simple query language. It comes with a open source React-based editor, that can be configured with basic JavaScript.
+## About Sanity.io
 
-## Quick start
+Sanity.io is the platform for structured content. With Sanity.io you can manage your text, images, and other media with APIs. You can also use the open-source single page application Sanity Studio to quickly set up an editing environment that you can customize. With Sanity.io you have access to a bunch of APIs, libraries, and tools for working that helps you leverage the benefits of having all your content behind a single source of truth. This article will quickly walk you through some of the central concepts, giving you a head start of what’s good to know. APIs, libraries, and tools for working that helps you leverage the benefits of having all your content behind a single source of truth. This article will quickly walk you through some of the central concepts giving you a head start of what’s good to know.
 
-`npm install -g @sanity/cli && sanity init`
+### Sanity Studio
 
-Read the
-[documentation](https://www.sanity.io/docs/introduction/getting-started) on how
-to get started
+Sanity Studio is an open-source single page application built with React.js. You define your content models with simple JavaScript. You can also extend it with your own React.js components. The Studio comes with advanced features that lets you tailor workflows for your editors. You can also install and make plugins for Sanity Studio and publish them on npm.
 
-## Real-time CMS for structured content
+### Data store
 
-Edit structured, highly connected documents collaboratively
-
-## Lightweight & pluggable
-
-Extend with your own data types, custom user interfaces and third-party
-integrations.
-
-## Editor for structured text
-
-Rich text editor yields structured content. Embed editable data in running text.
-Defer markup to render time. No HTML, ever!
-
-## Bring your own front-end
-
-We have libraries and example projects to quickly get you started. Can't see
-your favourite language or framework below? Get in touch!
-
-* [next.js](https://github.com/sanity-io/example-frontend-next-js)
-* [React](https://github.com/sanity-io/example-app-react-native)
-* [Vue.js](https://github.com/sanity-io/example-frontend-vue-js)
-* [PHP (silex & twig)](https://github.com/sanity-io/example-frontend-silex-twig)
-
-## Client libaries
-
-* [JS Client](https://www.sanity.io/docs/client-libraries/js-client)
-* [PHP Client](https://www.sanity.io/docs/client-libraries/php-client)
-* [C# .NET LINQ Client](https://github.com/oslofjord/sanity-linq)
+The Sanity Data Store is where your content is stored and accessed. It runs in the cloud, and is fully managed by us. You access the data store via the Sanity API, either by using one of our [client libraries](/docs/client-libraries) or directly via the [HTTP API](/docs/http-api).
