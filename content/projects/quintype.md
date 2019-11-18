@@ -6,39 +6,25 @@ opensource: "No"
 typeofcms: "API Driven"
 supportedgenerators:
   - All
-description: Quintype is the new age, mobile first publishing platform for digital publishers seeking to amplify audiences & revenues. 
+description: Quintype is the new age, mobile first publishing platform for digital publishers seeking to amplify audiences & revenues.
 ---
-## Benefits of Quintype CMS
 
-+ Publish Content with Ease 
-+ Higher Engagement
-+ Responsive Front-end
-+ Low Cost of Ownership
-+ Secure Your Content
+## Quintype
 
-## Content
-* Quintype’s content management system helps make the process of content creation simple and straightforward 
-  * Break news faster
-  * Reuse Media Assets
-  * Image Optimization
-  * Coherent Syndication
-  * AI powered recommendation
+Digital publishers often face margin squeeze on ads, and struggle with unproven revenue models, audience leakage to competition and rapidly changing technology. Overcome these problems effortlessly.
 
-## Distribution and SEO
-* Creating beautiful content experience is just the beginning. Deliver it to your intended audience with Quintype's syndication, social and SEO services
+### Bold
 
-## Audience and Engagement
-* Boost your engagement and grow your audience with in-built analytics, personalization and other tools
+A powerful editor for digital publishers. [explore →](https://www.quintype.com/products/bold)
 
-## Monetization 
-* Content and audience monetization simplified 
+### Accesstype
 
-## Technology 
-* Technical capabilities to handle scale and uptime
+Generate reader revenue with flexible subscription plans. [See how →](https://www.quintype.com/products/accesstype)
 
-### 100% maintenance free
+### Metype
 
-+Free Demo available. Contact sales@quintype.com
+For complete audience engagement. [know more →](https://www.metype.com/)
 
+### Ahead
 
-
+Our quick and easy solution to go live early. [take a look →](https://www.quintype.com/products/ahead)

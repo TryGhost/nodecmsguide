@@ -6,33 +6,37 @@ opensource: "No"
 typeofcms: "Git-based"
 supportedgenerators:
   - All
-description: A custom Content Manager with a clean, clutter-free UI that commits automatically to your repo.
+description: A static CMS that commits. Give your editors the power of Git with Forestry.
 images:
   - path: /images/forestry-ui.png
   - path: /images/forestry-ui-2.png
   - path: /images/forestry-ui-3.png
 ---
+
 ## Forestry.io
 
-A customizable Content Manager that focuses on what's important - Editing and Managing Content.
+Forestry.io is a Git-backed CMS (content management system) for websites and web products built using [static site generators](https://forestry.io/docs/faqs/glossary/static-site-generators/). Forestry bridges the gap between developers and their teams, by making development fun and easy, while providing powerful content management for their teams.
 
-**Content Editors**
+## What is Forestry?
 
-Our *clean UI* let's your editors focus on what's important. A powerful WYSIWYG editor and custom editing fields enables them to write with ease and no unnecessary distractions.
+The main thing to understand is that Forestry – unlike other content management systems – is entirely backed by Git.
 
-**Developers**
+To put it simply, Forestry is an editor-friendly interface over Git. This means that developers and editors can now use the same workflow and tool set.
 
-Write front-end code and push to your Git repo. We'll handle the rest. The updates from your content editors get committed back without merge conflicts. We want you to keep your workflow.
+This also means that all of your content and code always belongs to you, and is not stored in a database in the cloud out of your reach.
 
-**Our Support**
+## Advantages
 
-If you or your team has any questions we're happy to help you from within the interface or if we are temporarily unavailable you can ask the community to help. <a href="http://bit.ly/2oZBstD" style="color: #20c997;">Join our Slack Channel!</a>
+Choosing to build a static site and use a Git-backed CMS comes with a multitude of advantages over the traditional Monolithic CMS:
 
-## Get Started for Free
+### Speed, reliability, and security
 
-To have you try our Content Manager out you can either jump right in and let us set up the Content Manager for your existing site on GitHub or we can build a starter page. It only takes a minute!
+Static sites don’t require a complicated server setup to allow for the dynamic rendering of pages. This means your sites download faster for visitors, can handle insane volumes of traffic, and have many fewer touch points that are vulnerable to hacking.
 
-<a href="http://bit.ly/2DbXpL4" class="button primary big" style="padding: 1.25rem 2rem; background-color: #20c997; color: #fff; text-decoration: none;     border: 1px solid transparent; border-radius: 0.15em; cursor: pointer; display: inline-block; font-size: 16px; font-weight: 500; line-height: 1em;">Start building now</a>
+### Continuous Deployment
 
-<a href="mailto:support@forestry.io" style="font-size: 0.8em; color: #20c997;">*Tell us what you think.*</a>
+Unlike traditional content management systems, your codebase is your website. That means developers can work on changes to the website locally, and then push to Git and automatically have them deployed to production.
 
+### Unified Workflow
+
+Gone are the days of developers and editors having completely separate workflows. Developers and editors now work in sync with Git, providing unparalleled ability to deliver quickly and easily.
