@@ -1,6 +1,6 @@
 ---
 title: GraphCMS
-homepage: https://graphcms.com/
+homepage: https://graphcms.com
 twitter: GraphCMS
 opensource: "No"
 typeofcms: "API Driven"
@@ -8,22 +8,55 @@ supportedgenerators:
   - All
 description: GraphCMS is a GraphQL Based Headless Content Management System
 images:
-  - path: /images/graphcms-dashboard.png
-  - path: /images/GraphCMS-intuitive-modelling.png
+  - path: /images/graphcms-intro.png
+  - path: /images/graphcms-features.png
+  - path: /images/graphcms-api.png
+  - path: /images/graphcms-jamstack.png
+
 ---
 
-## Manage Content for Any Platform
+## About GraphCMS
+As the first GraphQL native Headless CMS, our mission is to remove traditional content management pain points by using the power of GraphQL, and take the idea of a Headless CMS to the next level.
 
-Headless CMS for Digital Creators. GraphQL Content APIs for Digital Products.
+## Why Use GraphCMS?
 
-### Build
+### API-first CMS with the most flexible content API in the CMS industry
+Our generated APIs offer endless flexibility for fetching or writing content. Precise content selection, filtering, ordering, pagination, union types and much more.
 
-Within minutes, define everything about your GraphQL API - structures, relations, powerful permissions.
+### We're focused on Developers challenges
+Minimum payload, client-driven data queries, generated documentation, powerful tooling and extensive filtering for an utterly flexible interaction with your API. 
+The generated GraphQL API works for read and write operations and scales seamlessly.
 
-### Manage
+### Free forever developer plan
+Enjoy GraphCMS for personal or small-scale projects. Our free forever plan lets up to 2 users work on GraphCMS projects with restricted locales, user roles, and stages. Flexible and project based pricing suited to accommodate your growth as your project needs scale. 
 
-We give your content creators the tools they're used to - text editors, workflows, advanced roles.
+## Useful Links to get Started with GraphCMS
 
-### Integrate
+#### Checkout our docs for more information:
+https://graphcms.com/docs
 
-Use your generated GraphQL API to deliver content into any platform of your choice.
+#### View all GraphCMS Features:
+https://graphcms.com/features
+
+#### Sign up for a free developer account:
+https://app.graphcms.com/signup
+
+#### Get started with GraphCMS examples and open source references:
+- eCommerce SWAG store with Gatsby, Netlify, Algolia, Printful, and Stripe: https://github.com/graphcms/gatsby-graphcms-ecommerce-starter/
+- Hotels website for dynamic content with Gatsby: https://github.com/GraphCMS/example-gatsby-static-dynamic-hotel
+- Podcast website with the serverless stack using NextJS and Tailwind: https://github.com/graphCMS/nextjs-graphcms-podcast-starter/
+- GraphCMS examples with NextJS, NuxtJS, Gridsome, Gatsby, Vue, and more: https://github.com/GraphCMS/graphcms-examples/
+- Events and Speakers website with NextJS, Vercel, and Postmark: https://github.com/graphCMS/nextjs-graphcms-events-starter/
+
+#### Learn about GraphQL Headless CMS:
+https://graphcms.com/graphql-headless-cms
+
+#### Learn about working with a GraphQL Headless CMS:
+https://graphcms.com/graphql-headless-cms
+
+#### Learn about using GraphCMS with:
+- React: https://graphcms.com/react-cms
+- NextJS: https://graphcms.com/nextjs-cms
+- Vue: https://graphcms.com/vue-cms
+- Gatsby: https://graphcms.com/gatsby-cms
+- Static Sites: https://graphcms.com/static-sites
