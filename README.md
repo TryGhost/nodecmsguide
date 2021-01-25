@@ -64,5 +64,6 @@ npm run build
 
 nodecms.guide is built and maintained by [Netlify](https://www.netlify.com), a hosting and automation service for static websites and apps.
 
-## License
-This project is licensed under the [MIT license](http://opensource.org/licenses/MIT).
+# Copyright & License
+
+Copyright (c) 2013-2021 Ghost Foundation - Released under the [MIT license](LICENSE).
