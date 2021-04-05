@@ -7797,9 +7797,9 @@ react-lifecycles-compat@^3.0.4:
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
 react-number-format@^4.0.3:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.5.2.tgz#5363e2a97ddb0e08fa2b7dd24b8319b6fb83519a"
-  integrity sha512-5pE0q6Q3pw0phFPpKWjyqRPCaajroggB8L43goMQzBEFyAi7LF+OpZH+uB9Wxg+rTOt/Ydi5H5Q2O5pmHvGzrg==
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.5.3.tgz#c7b99cad759c6ccd7f82379f2f86d2d920c5ff29"
+  integrity sha512-y7+2HtVjQI82Pome1Xxdf8RODZ6vAGwBnao4Iohl8/zhzWpkuLzvquXHXzXuHT6Xija4QddFAGitUbW3dN4sNg==
   dependencies:
     prop-types "^15.7.2"
 
