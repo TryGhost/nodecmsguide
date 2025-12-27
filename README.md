@@ -60,9 +60,9 @@ To run a production build for deployment:
 npm run build
 ```
 
-## Netlify
+## Ghost
 
-nodecms.guide is built and maintained by [Netlify](https://www.netlify.com), a hosting and automation service for static websites and apps.
+nodecms.guide is built and maintained by [Ghost](https://ghost.org), an open source publishing platform built on Node.js.
 
 # Copyright & License
 
