@@ -84,13 +84,6 @@ const OpenSourceStat = styled(({
   }
 `
 
-const TwitterIcon = styled(({ className }) =>
-  <EntypoTwitter className={className} />
-)`
-  width: 16px !important;
-  height: 16px !important;
-`
-
 const OpenSourceStats = styled(({
   stars,
   starsPrevious,
@@ -98,8 +91,6 @@ const OpenSourceStats = styled(({
   issuesPrevious,
   forks,
   forksPrevious,
-  followers,
-  followersPrevious,
   dataAgeInDays,
   className,
 }) => (
@@ -127,14 +118,6 @@ const OpenSourceStats = styled(({
       indicateColor
       dataAgeInDays={dataAgeInDays}
     />
-    <OpenSourceStat
-      Icon={() => <TwitterIcon />}
-      label="Twitter followers"
-      value={followers}
-      change={followers - followersPrevious}
-      indicateColor
-      dataAgeInDays={dataAgeInDays}
-    />
   </div>
 ))`
   border-top: 1px solid #eee;
@@ -143,6 +126,7 @@ const OpenSourceStats = styled(({
   padding: 18px;
   margin: 16px -18px 0;
   display: flex;
+  justify-content: space-between;
 `
 
 const Project = styled(({
@@ -153,11 +137,9 @@ const Project = styled(({
   stars,
   forks,
   issues,
-  followers,
   starsPrevious = 0,
   forksPrevious = 0,
   issuesPrevious = 0,
-  followersPrevious = 0,
   images,
   description,
   slug,
@@ -171,8 +153,6 @@ const Project = styled(({
     issuesPrevious,
     forks,
     forksPrevious,
-    followers,
-    followersPrevious,
     dataAgeInDays,
   }
 

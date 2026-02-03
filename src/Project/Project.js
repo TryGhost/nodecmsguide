@@ -34,7 +34,6 @@ const Project = () => (
     openSource,
     generators = [],
     stars,
-    followers,
     images,
     twitter,
     content,
@@ -50,7 +49,7 @@ const Project = () => (
           </DetailLink>
           {twitter &&
             <DetailLink>
-              <a href={`https://twitter.com/${twitter}`}><EntypoIcon Icon={EntypoTwitter} /> {twitter} (<NumberFormat value={followers} displayType="text" thousandSeparator />)</a>
+              <a href={`https://twitter.com/${twitter}`}><EntypoIcon Icon={EntypoTwitter} /> {twitter}</a>
             </DetailLink>
           }
           {repo &&

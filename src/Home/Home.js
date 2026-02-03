@@ -12,7 +12,6 @@ const SORT_GROUPS = [
 const SORTS = [
   { name: 'title', label: 'Title' },
   { name: 'stars', label: 'GitHub stars', group: 'total', reverse: true },
-  { name: 'followers', label: 'Twitter followers', group: 'total', reverse: true },
   {
     name: 'starsTrending',
     label: 'GitHub stars (7 days)',
@@ -20,15 +19,7 @@ const SORTS = [
     reverse: true,
     filterBy: 'stars',
     compute: p => p.stars - (p.starsPrevious || 0),
-  },
-  {
-    name: 'followersTrending',
-    label: 'Twitter followers (7 days)',
-    group: 'trending',
-    reverse: true,
-    filterBy: 'followers',
-    compute: p => p.followers - (p.followersPrevious || 0),
-  },
+  }
 ]
 
 const Dropdown = ({ emptyLabel, options, groups, selection, onChange }) => (

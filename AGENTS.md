@@ -4,7 +4,7 @@ Project-specific instructions for AI agents working on this codebase.
 
 ## Project Overview
 
-**nodecms.guide** is a Node.js CMS leaderboard and comparison website maintained by Ghost. It showcases 55+ Node.js-based content management systems with live GitHub/Twitter metrics.
+**nodecms.guide** is a Node.js CMS leaderboard and comparison website maintained by Ghost. It showcases 55+ Node.js-based content management systems with live GitHub metrics.
 
 **Live site:** https://nodecms.guide
 
@@ -14,7 +14,7 @@ Project-specific instructions for AI agents working on this codebase.
 - **Styling:** Styled Components 3.x (CSS-in-JS)
 - **Routing:** React Router 4.2
 - **Data:** Markdown files with YAML frontmatter (gray-matter)
-- **APIs:** GitHub (@octokit/rest), Twitter (twitter-followers-count)
+- **APIs:** GitHub (@octokit/rest)
 - **Hosting:** Netlify
 
 ## Project Structure
@@ -43,7 +43,7 @@ yarn stage          # Staging build
 yarn serve          # Serve production build locally
 ```
 
-**Recommended:** Use `yarn dev` for local development. This runs `netlify dev` which automatically fetches environment variables from Netlify, enabling GitHub/Twitter API calls without local `.env` setup.
+**Recommended:** Use `yarn dev` for local development. This runs `netlify dev` which automatically fetches environment variables from Netlify, enabling GitHub API calls without local `.env` setup.
 
 ## Adding a New CMS
 
@@ -54,7 +54,6 @@ Create a new Markdown file in `/content/projects/` with this frontmatter structu
 title: CMS Name
 repo: owner/repo                    # GitHub repo (omit for closed source)
 homepage: https://example.com
-twitter: handle                     # Without @
 opensource: "Yes"                   # "Yes" or "No"
 typeofcms: "API Driven"             # See types below
 supportedgenerators:
@@ -103,10 +102,6 @@ Extends `react-tools` preset. Run `yarn lint` before committing.
 Required for data fetching. These are configured in Netlify and automatically available when using `yarn dev`:
 
 - `NODE_CMS_GITHUB_TOKEN` - GitHub personal access token
-- `NODE_CMS_TWITTER_CONSUMER_KEY`
-- `NODE_CMS_TWITTER_CONSUMER_SECRET`
-- `NODE_CMS_TWITTER_ACCESS_TOKEN_KEY`
-- `NODE_CMS_TWITTER_ACCESS_TOKEN_SECRET`
 
 No local `.env` file needed when using `yarn dev` (Netlify CLI fetches these automatically).
 
@@ -132,5 +127,5 @@ No test suite currently configured. Manual testing:
 ## Notes
 
 - All content changes require a rebuild to appear on the live site
-- GitHub and Twitter metrics are cached in a GitHub Gist (24-hour refresh)
+- GitHub metrics are cached in a GitHub Gist (24-hour refresh)
 - Filtering and sorting happens client-side in React
