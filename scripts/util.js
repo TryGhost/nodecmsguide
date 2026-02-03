@@ -1,5 +1,5 @@
-import slug from 'slug'
+import slug from 'slug';
 
-export function toSlug (str) {
-  return slug(str.toLowerCase())
+export function toSlug(str) {
+  return slug(str.toLowerCase());
 }

@@ -1,0 +1,141 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { toSlug } from '../../../scripts/util.js';
+import fetchArchive from '../../../scripts/fetch-archive.js';
+import { map, mapValues, find, pickBy } from 'lodash-es';
+import { max, subWeeks, closestTo, differenceInDays } from 'date-fns';
+import { marked } from 'marked';
+
+const SITE_URL = 'https://nodecms.guide';
+
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects');
+  return projectEntries.map((entry) => ({
+    params: { slug: toSlug(entry.data.title) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Map project data
+const projectDetails = [{
+  title: entry.data.title,
+  slug: toSlug(entry.data.title),
+  repo: entry.data.repo,
+  homepage: entry.data.homepage,
+  openSource: entry.data.opensource.toLowerCase() === 'yes',
+  generators: entry.data.supportedgenerators,
+  type: entry.data.typeofcms,
+  description: entry.data.description,
+  images: entry.data.images,
+  starterTemplateRepo: entry.data.startertemplaterepo,
+}];
+
+// Fetch GitHub data
+let projectData: Record<string, any> = {};
+try {
+  const projectDataRaw = await fetchArchive(projectDetails);
+  projectData = extractRelevantProjectData(projectDataRaw);
+} catch (error) {
+  console.warn('Failed to fetch GitHub data:', error);
+}
+
+function extractRelevantProjectData(data: Record<string, any[]>) {
+  return mapValues(data, (project) => {
+    const timestamps = map(project, 'timestamp');
+    if (timestamps.length === 0) return {};
+
+    const newestTimestamp = max(timestamps)?.getTime() || Date.now();
+    const targetOldestTimestamp = subWeeks(Date.now(), 1).getTime();
+    const oldestTimestamp = closestTo(targetOldestTimestamp, timestamps)?.getTime() || newestTimestamp;
+    const dataAgeInDays = differenceInDays(Date.now(), oldestTimestamp);
+
+    const { forks, stars, issues } = find(project, { timestamp: newestTimestamp }) || {};
+    const {
+      forks: forksPrevious,
+      stars: starsPrevious,
+      issues: issuesPrevious,
+    } = find(project, { timestamp: oldestTimestamp }) || {};
+
+    return {
+      forks,
+      stars,
+      issues,
+      forksPrevious,
+      starsPrevious,
+      issuesPrevious,
+      dataAgeInDays,
+    };
+  });
+}
+
+const slug = toSlug(entry.data.title);
+const data = projectData[slug] || {};
+const project = pickBy({ ...projectDetails[0], ...data }, (val) => val !== undefined && val !== null);
+
+const shareUrl = `${SITE_URL}/projects/${slug}`;
+const shareText = `Check out ${entry.data.title}, a Node.js content management system: `;
+
+function formatNumber(num: number | undefined): string {
+  if (typeof num !== 'number') return 'N/A';
+  return num.toLocaleString();
+}
+---
+
+<BaseLayout title={entry.data.title} shareUrl={shareUrl} shareText={shareText}>
+  <Header shareUrl={shareUrl} shareText={shareText} />
+  <div class="content">
+    <div class="sheet">
+      <h1>{entry.data.title}</h1>
+
+      <p class="links">
+        {entry.data.homepage && (
+          <a href={entry.data.homepage} target="_blank" rel="noopener noreferrer">
+            Website
+          </a>
+        )}
+        {entry.data.homepage && entry.data.repo && <span class="separator">|</span>}
+        {entry.data.repo && (
+          <a href={`https://github.com/${entry.data.repo}`} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        )}
+      </p>
+
+      {(project.stars || project.forks || project.issues) && (
+        <p>
+          <strong>Stars:</strong> {formatNumber(project.stars as number)} |
+          <strong>Forks:</strong> {formatNumber(project.forks as number)} |
+          <strong>Open Issues:</strong> {formatNumber(project.issues as number)}
+        </p>
+      )}
+
+      <p>
+        <strong>Type:</strong> {entry.data.typeofcms} |
+        <strong>License:</strong> {entry.data.opensource === 'Yes' ? 'Open Source' : 'Proprietary'}
+      </p>
+
+      <p>
+        <strong>Supported Generators:</strong> {entry.data.supportedgenerators.join(', ')}
+      </p>
+
+      <div class="text">
+        <Content />
+      </div>
+
+      {entry.data.images && entry.data.images.length > 0 && (
+        <div class="images">
+          {entry.data.images.map((image: { path: string }) => (
+            <img src={image.path} alt={`${entry.data.title} screenshot`} />
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+  <Footer />
+</BaseLayout>

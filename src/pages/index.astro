@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectFilter from '../components/ProjectFilter';
+import { toSlug } from '../../scripts/util.js';
+import fetchArchive from '../../scripts/fetch-archive.js';
+import { map, mapValues, find, uniq, flatten, sortBy, pickBy } from 'lodash-es';
+import { max, subWeeks, closestTo, differenceInDays } from 'date-fns';
+
+const SITE_URL = 'https://nodecms.guide';
+
+// Get all projects from content collection
+const projectEntries = await getCollection('projects');
+
+// Map project data from frontmatter
+const projectDetails = projectEntries.map((entry) => ({
+  title: entry.data.title,
+  slug: toSlug(entry.data.title),
+  repo: entry.data.repo,
+  homepage: entry.data.homepage,
+  openSource: entry.data.opensource.toLowerCase() === 'yes',
+  generators: entry.data.supportedgenerators,
+  type: entry.data.typeofcms,
+  description: entry.data.description,
+  images: entry.data.images,
+  starterTemplateRepo: entry.data.startertemplaterepo,
+}));
+
+// Fetch GitHub data
+let projectData: Record<string, any> = {};
+try {
+  const projectDataRaw = await fetchArchive(projectDetails);
+  projectData = extractRelevantProjectData(projectDataRaw);
+} catch (error) {
+  console.warn('Failed to fetch GitHub data:', error);
+}
+
+function extractRelevantProjectData(data: Record<string, any[]>) {
+  return mapValues(data, (project) => {
+    const timestamps = map(project, 'timestamp');
+    if (timestamps.length === 0) return {};
+
+    const newestTimestamp = max(timestamps)?.getTime() || Date.now();
+    const targetOldestTimestamp = subWeeks(Date.now(), 1).getTime();
+    const oldestTimestamp = closestTo(targetOldestTimestamp, timestamps)?.getTime() || newestTimestamp;
+    const dataAgeInDays = differenceInDays(Date.now(), oldestTimestamp);
+
+    const { forks, stars, issues } = find(project, { timestamp: newestTimestamp }) || {};
+    const {
+      forks: forksPrevious,
+      stars: starsPrevious,
+      issues: issuesPrevious,
+    } = find(project, { timestamp: oldestTimestamp }) || {};
+
+    return {
+      forks,
+      stars,
+      issues,
+      forksPrevious,
+      starsPrevious,
+      issuesPrevious,
+      dataAgeInDays,
+    };
+  });
+}
+
+// Combine project details with GitHub data
+const projects = projectDetails.map((project) => {
+  const slug = toSlug(project.title);
+  const data = projectData[slug] || {};
+  return pickBy({ ...project, ...data }, (val) => val !== undefined && val !== null);
+});
+
+// Generate filter options
+const types = sortBy(uniq(map(projects, 'type')));
+const generators = sortBy(uniq(flatten(map(projects, 'generators'))));
+
+const shareText = 'Check out Node CMS Guide, a leaderboard of Node.js content management systems: ';
+---
+
+<BaseLayout>
+  <Header shareUrl={SITE_URL} shareText={shareText} />
+  <div class="content">
+    <ProjectFilter
+      client:load
+      projects={projects as any}
+      types={types}
+      generators={generators}
+    />
+  </div>
+  <Footer />
+</BaseLayout>
