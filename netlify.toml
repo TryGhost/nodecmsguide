@@ -1,9 +1,9 @@
 [build]
-  command = "npm run build"
+  command = "yarn build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
 
 [context.deploy-preview]
-  command = "npm run build"
+  command = "yarn build"
