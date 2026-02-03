@@ -254,30 +254,30 @@ export default function ProjectFilter({ projects, types, generators }: ProjectFi
   const [filter, setFilter] = useState<{ type?: string; ssg?: string; license?: string }>({});
   const [sort, setSort] = useState('stars');
 
-  const canShow = (project: Project) => {
-    const { license, ssg, type } = filter;
-    const shouldHide =
-      (license === 'Open source' && !project.openSource) ||
-      (license === 'Closed source' && project.openSource) ||
-      (ssg && !project.generators.includes(ssg) && !project.generators.includes('All')) ||
-      (type && project.type !== type);
-    return !shouldHide;
-  };
-
-  const sortProjects = (projectList: Project[]) => {
-    const sortObj = find(SORTS, { name: sort }) || ({} as SortOption);
-    const sorted = sortBy(projectList, sortObj.compute || sortObj.name);
-
-    if (sortObj.reverse) {
-      const withSort = lodashFilter(sorted, sortObj.filterBy || sortObj.name);
-      const withoutSort = difference(sorted, withSort);
-      return [...reverse(withSort), ...withoutSort];
-    }
-
-    return sorted;
-  };
-
   const visibleProjects = useMemo(() => {
+    const canShow = (project: Project) => {
+      const { license, ssg, type } = filter;
+      const shouldHide =
+        (license === 'Open source' && !project.openSource) ||
+        (license === 'Closed source' && project.openSource) ||
+        (ssg && !project.generators.includes(ssg) && !project.generators.includes('All')) ||
+        (type && project.type !== type);
+      return !shouldHide;
+    };
+
+    const sortProjects = (projectList: Project[]) => {
+      const sortObj = find(SORTS, { name: sort }) || ({} as SortOption);
+      const sorted = sortBy(projectList, sortObj.compute || sortObj.name);
+
+      if (sortObj.reverse) {
+        const withSort = lodashFilter(sorted, sortObj.filterBy || sortObj.name);
+        const withoutSort = difference(sorted, withSort);
+        return [...reverse(withSort), ...withoutSort];
+      }
+
+      return sorted;
+    };
+
     return sortProjects(projects.filter(canShow));
   }, [projects, filter, sort]);
 

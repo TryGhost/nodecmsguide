@@ -16,20 +16,18 @@
     "@octokit/rest": "^22.0.0",
     "astro": "^5.2.5",
     "date-fns": "^4.1.0",
-    "decamelize": "^6.0.0",
     "dotenv": "^16.4.7",
     "fs-extra": "^11.2.0",
-    "gray-matter": "^4.0.3",
     "lodash-es": "^4.17.21",
-    "marked": "^17.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-number-format": "^5.4.3",
     "react-share": "^5.2.2",
     "slug": "^11.0.1"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.0.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "typescript": "^5.7.3"

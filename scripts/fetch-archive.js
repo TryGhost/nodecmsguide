@@ -13,14 +13,27 @@ const GIST_ARCHIVE_DESCRIPTION = 'NODECMS.GUIDE DATA ARCHIVE';
 let octokit;
 
 function authenticate() {
+  if (!GITHUB_TOKEN) {
+    throw new Error(
+      'Environment variable NODE_CMS_GITHUB_TOKEN is not set. Please provide a valid GitHub token.'
+    );
+  }
   octokit = new Octokit({ auth: GITHUB_TOKEN });
 }
 
 async function getProjectGitHubData(repo) {
-  const [owner, repoName] = repo.split('/');
-  const { data } = await octokit.rest.repos.get({ owner, repo: repoName });
-  const { stargazers_count, forks_count, open_issues_count } = data;
-  return { stars: stargazers_count, forks: forks_count, issues: open_issues_count };
+  try {
+    const [owner, repoName] = repo.split('/');
+    const { data } = await octokit.rest.repos.get({ owner, repo: repoName });
+    const { stargazers_count, forks_count, open_issues_count } = data;
+    return { stars: stargazers_count, forks: forks_count, issues: open_issues_count };
+  } catch (error) {
+    console.warn(
+      `Failed to fetch GitHub data for repository "${repo}":`,
+      error?.message || error
+    );
+    return { stars: 0, forks: 0, issues: 0 };
+  }
 }
 
 async function getAllProjectGitHubData(repos) {

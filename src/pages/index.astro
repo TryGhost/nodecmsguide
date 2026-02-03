@@ -6,8 +6,8 @@ import Footer from '../components/Footer.astro';
 import ProjectFilter from '../components/ProjectFilter';
 import { toSlug } from '../../scripts/util.js';
 import fetchArchive from '../../scripts/fetch-archive.js';
-import { map, mapValues, find, uniq, flatten, sortBy, pickBy } from 'lodash-es';
-import { max, subWeeks, closestTo, differenceInDays } from 'date-fns';
+import { extractRelevantProjectData } from '../../scripts/project-data.js';
+import { map, uniq, flatten, sortBy, pickBy } from 'lodash-es';
 
 const SITE_URL = 'https://nodecms.guide';
 
@@ -35,35 +35,6 @@ try {
   projectData = extractRelevantProjectData(projectDataRaw);
 } catch (error) {
   console.warn('Failed to fetch GitHub data:', error);
-}
-
-function extractRelevantProjectData(data: Record<string, any[]>) {
-  return mapValues(data, (project) => {
-    const timestamps = map(project, 'timestamp');
-    if (timestamps.length === 0) return {};
-
-    const newestTimestamp = max(timestamps)?.getTime() || Date.now();
-    const targetOldestTimestamp = subWeeks(Date.now(), 1).getTime();
-    const oldestTimestamp = closestTo(targetOldestTimestamp, timestamps)?.getTime() || newestTimestamp;
-    const dataAgeInDays = differenceInDays(Date.now(), oldestTimestamp);
-
-    const { forks, stars, issues } = find(project, { timestamp: newestTimestamp }) || {};
-    const {
-      forks: forksPrevious,
-      stars: starsPrevious,
-      issues: issuesPrevious,
-    } = find(project, { timestamp: oldestTimestamp }) || {};
-
-    return {
-      forks,
-      stars,
-      issues,
-      forksPrevious,
-      starsPrevious,
-      issuesPrevious,
-      dataAgeInDays,
-    };
-  });
 }
 
 // Combine project details with GitHub data
