@@ -32,18 +32,18 @@ Because Ghost is completely open source, built as a JSON API, has webhooks, and 
 
 Ghost ships with the [Bookshelf.js ORM](http://bookshelfjs.org/) layer by default allowing for a range of databases to be used. Currently SQLite3 is the supported default in development while MySQL is recommended for production. Other databases are available, and compatible, but not supported by the core team.
 
-Additionally, while Ghost uses local file storage by default it's also possible to use custom storage adapters to make your filesystem completely external. There are fairly wide range of [pre-made storage adapters](https://docs.ghost.org/concepts/storage-adapters/) for Ghost already available for use.
+Additionally, while Ghost uses local file storage by default it's also possible to use custom storage adapters to make your filesystem completely external. There are fairly wide range of [pre-made storage adapters](https://docs.ghost.org/config#creating-a-custom-storage-adapter) for Ghost already available for use.
 
 <img class="simple" style="width:calc(100%+40px);margin-left:-20px;margin-right:-20px;" src="/images/ghost-examples.png" alt="Ghost examples" />
 
 ### Example Customers
 
-Hitting the right balance of needs has led Ghost to be used in production by organisations including Apple, Sky News, DuckDuckGo, Mozilla, OpenAI, Square, CloudFlare, Tinder, the Bitcoin Foundation and [many more](https://ghost.org/customers/).
+Hitting the right balance of needs has led Ghost to be used in production by organisations including Apple, Sky News, DuckDuckGo, Mozilla, OpenAI, Square, CloudFlare, Tinder, the Bitcoin Foundation and [many more](https://explore.ghost.org/).
 
 ### Try Ghost
 
 Ghost is completely free an open source, released under the MIT license, stewarded by a non-profit foundation. It can be downloaded and self-hosted just about anywhere, or spun up in a few moments using the **[Ghost(Pro)](https://ghost.org/pricing/)** managed PaaS, which comes with a 14 day free trial. Here are a few quick links to get started:
 
-[Ghost.org](https://ghost.org) | [Features](https://ghost.org/features) | [Showcase](https://ghost.org/customers) | [Github](https://github.com/tryghost/ghost) | [Forum](https://forum.ghost.org/) | [Documentation](https://docs.ghost.org/) | [Demo](https://demo.ghost.io)
+[Ghost.org](https://ghost.org) | [Marketplace](https://ghost.org/marketplace/) | [Showcase](https://explore.ghost.org/) | [Github](https://github.com/tryghost/ghost) | [Forum](https://forum.ghost.org/) | [Documentation](https://docs.ghost.org/) | [Demo](https://demo.ghost.io)
 
 <style>.images{display:none}</style>

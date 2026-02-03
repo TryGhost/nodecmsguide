@@ -7,21 +7,21 @@
 ## Contributing
 
 Missing a Node.js CMS here? Just fork the repo and add yours as a `<name>.md` in the
-`content/projects` folder.
+`src/content/projects` folder.
 
 Make sure to follow the following rules:
 
 - **Node.js application:** Built on top of Node.js in some shape or form
-- **Stick to the format:** Fill out all the same fields as the other CMS's in source/projects.
+- **Stick to the format:** Fill out all the same fields as the other CMS's in the projects folder.
 - **Short description:** Keep all the details for the body text, keep the description for the overview page short and sweet.
 
 ## Usage
 
-Be sure that you have the latest node and yarn installed, then clone this repository and run:
+Requires Node.js 22 or higher. Clone this repository and run:
 
 ```bash
-yarn
-yarn start
+yarn install
+yarn dev
 ```
 
 In order to successfully retrieve GitHub stars, you will need authentication
@@ -36,24 +36,27 @@ these in a `.env` file at the root of the repo.
 NODE_CMS_GITHUB_TOKEN=examplekey123abc
 ```
 
-GitHub data is cached in the `.tmp` directory, and online in a Gist. If the data is
+GitHub data is cached in the `tmp` directory, and online in a Gist. If the data is
 more than 24 hours old, fresh data is fetched from GitHub. Fetching and caching occur
 automatically during the build.
 
-Then visit http://localhost:3000/ - React Static will automatically reload when changes occur.
+Then visit http://localhost:4321/ - Astro will automatically reload when changes occur.
 
-To test a production build locally, do:
-
-```bash
-npm run stage
-npm run serve
-```
-
-To run a production build for deployment:
+To preview a production build locally:
 
 ```bash
-npm run build
+yarn build
+yarn preview
 ```
+
+## Tech Stack
+
+- **Framework:** [Astro](https://astro.build/) (Static Site Generator)
+- **Interactive Components:** React 19
+- **Styling:** Plain CSS
+- **Data:** Markdown files with YAML frontmatter
+- **APIs:** GitHub (@octokit/rest)
+- **Hosting:** Netlify
 
 ## Ghost
 

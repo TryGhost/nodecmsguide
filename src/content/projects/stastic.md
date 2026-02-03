@@ -14,7 +14,7 @@ Stastic is an online website editor used to create a website or edit one you alr
 
 Hosting is free, without ads, and super fast. The editor is simple and optimized for mobile phones.
 
-> Note: static websites are **very** fast ! Stastic editor plugs into Jekyll websites, wich are natively supported by [Github pages](https://pages.github.com/). Install Stastic, then add `/admin` to the website URL to enter the editor.
+> Note: static websites are **very** fast ! Stastic editor plugs into Jekyll websites, which are natively supported by [Github pages](https://pages.github.com/). Install Stastic, then add `/admin` to the website URL to enter the editor.
 
 It has never been that easy to create and edit static websites:
 

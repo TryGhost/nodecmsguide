@@ -51,9 +51,6 @@ https://app.graphcms.com/signup
 #### Learn about GraphQL Headless CMS:
 https://graphcms.com/graphql-headless-cms
 
-#### Learn about working with a GraphQL Headless CMS:
-https://graphcms.com/graphql-headless-cms
-
 #### Learn about using GraphCMS with:
 - React: https://graphcms.com/react-cms
 - NextJS: https://graphcms.com/nextjs-cms

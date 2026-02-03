@@ -4,7 +4,7 @@ title: Contribute
 
 # Contribute
 
-Everybody is welcome to contribute to nodecms.guide, just fork the [GitHub repo](https://github.com/tryghost/nodecmsguide) and send a pull request. Each Content Management System is a markdown file in the `site/content/projects` directory.
+Everybody is welcome to contribute to nodecms.guide, just fork the [GitHub repo](https://github.com/tryghost/nodecmsguide) and send a pull request. Each Content Management System is a markdown file in the `src/content/projects` directory.
 
 We'll only accept pull requests adding new CMS' if they follow these rules:
 

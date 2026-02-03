@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectFilter, { type Project, type ProjectGitHubData } from '../components/ProjectFilter';
+import { toSlug, mapProjectEntry } from '../../scripts/util.js';
+import fetchArchive from '../../scripts/fetch-archive.js';
+import { extractRelevantProjectData } from '../../scripts/project-data.js';
+import { map, uniq, flatten, sortBy, pickBy } from 'lodash-es';
+
+const SITE_URL = 'https://nodecms.guide';
+
+// Get all projects from content collection
+const projectEntries = await getCollection('projects');
+
+// Map project data from frontmatter
+const projectDetails = projectEntries.map(mapProjectEntry);
+
+// Fetch GitHub data
+let projectData: Record<string, ProjectGitHubData> = {};
+try {
+  const projectDataRaw = await fetchArchive(projectDetails);
+  projectData = extractRelevantProjectData(projectDataRaw);
+} catch (error) {
+  console.warn('Failed to fetch GitHub data:', error instanceof Error ? error.message : 'Unknown error');
+}
+
+// Combine project details with GitHub data
+const projects: Project[] = projectDetails.map((project) => {
+  const slug = toSlug(project.title);
+  const data = projectData[slug] || {};
+  return pickBy({ ...project, ...data }, (val) => val !== undefined && val !== null) as Project;
+});
+
+// Generate filter options
+const types = sortBy(uniq(map(projects, 'type')));
+const generators = sortBy(uniq(flatten(map(projects, 'generators'))));
+
+const shareText = 'Check out Node CMS Guide, a leaderboard of Node.js content management systems: ';
+---
+
+<BaseLayout>
+  <Header shareUrl={SITE_URL} shareText={shareText} />
+  <div class="content">
+    <ProjectFilter
+      client:load
+      projects={projects}
+      types={types}
+      generators={generators}
+    />
+  </div>
+  <Footer />
+</BaseLayout>

@@ -24,3 +24,9 @@ tmp
 
 # Local Netlify folder
 .netlify
+
+# Astro cache (regenerated on build)
+.astro
+
+# Playwright MCP snapshots
+.playwright-mcp
