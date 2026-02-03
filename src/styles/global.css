@@ -389,7 +389,7 @@ pre {
   display: inline;
 }
 
-.card .type + h7 {
+.card .type + h6 {
   display: block;
   margin-top: 8px;
 }

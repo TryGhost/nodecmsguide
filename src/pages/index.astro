@@ -3,8 +3,8 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import ProjectFilter from '../components/ProjectFilter';
-import { toSlug } from '../../scripts/util.js';
+import ProjectFilter, { type Project, type ProjectGitHubData } from '../components/ProjectFilter';
+import { toSlug, mapProjectEntry } from '../../scripts/util.js';
 import fetchArchive from '../../scripts/fetch-archive.js';
 import { extractRelevantProjectData } from '../../scripts/project-data.js';
 import { map, uniq, flatten, sortBy, pickBy } from 'lodash-es';
@@ -15,33 +15,22 @@ const SITE_URL = 'https://nodecms.guide';
 const projectEntries = await getCollection('projects');
 
 // Map project data from frontmatter
-const projectDetails = projectEntries.map((entry) => ({
-  title: entry.data.title,
-  slug: toSlug(entry.data.title),
-  repo: entry.data.repo,
-  homepage: entry.data.homepage,
-  openSource: entry.data.opensource.toLowerCase() === 'yes',
-  generators: entry.data.supportedgenerators,
-  type: entry.data.typeofcms,
-  description: entry.data.description,
-  images: entry.data.images,
-  starterTemplateRepo: entry.data.startertemplaterepo,
-}));
+const projectDetails = projectEntries.map(mapProjectEntry);
 
 // Fetch GitHub data
-let projectData: Record<string, any> = {};
+let projectData: Record<string, ProjectGitHubData> = {};
 try {
   const projectDataRaw = await fetchArchive(projectDetails);
   projectData = extractRelevantProjectData(projectDataRaw);
 } catch (error) {
-  console.warn('Failed to fetch GitHub data:', error);
+  console.warn('Failed to fetch GitHub data:', error instanceof Error ? error.message : 'Unknown error');
 }
 
 // Combine project details with GitHub data
-const projects = projectDetails.map((project) => {
+const projects: Project[] = projectDetails.map((project) => {
   const slug = toSlug(project.title);
   const data = projectData[slug] || {};
-  return pickBy({ ...project, ...data }, (val) => val !== undefined && val !== null);
+  return pickBy({ ...project, ...data }, (val) => val !== undefined && val !== null) as Project;
 });
 
 // Generate filter options
@@ -56,7 +45,7 @@ const shareText = 'Check out Node CMS Guide, a leaderboard of Node.js content ma
   <div class="content">
     <ProjectFilter
       client:load
-      projects={projects as any}
+      projects={projects}
       types={types}
       generators={generators}
     />

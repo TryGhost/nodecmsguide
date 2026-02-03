@@ -13,10 +13,10 @@ interface ShareButtonsProps {
 export default function ShareButtons({ shareUrl, shareText }: ShareButtonsProps) {
   return (
     <div className="share-buttons">
-      <TwitterShareButton url={shareUrl} title={shareText} aria-label="twitter">
+      <TwitterShareButton url={shareUrl} title={shareText} aria-label="Share on X (Twitter)">
         <TwitterIcon size={40} round bgStyle={{ fill: '#313d3e' }} />
       </TwitterShareButton>
-      <RedditShareButton url={shareUrl} title={shareText} aria-label="reddit">
+      <RedditShareButton url={shareUrl} title={shareText} aria-label="Share on Reddit">
         <RedditIcon size={40} round bgStyle={{ fill: '#313d3e' }} />
       </RedditShareButton>
     </div>

@@ -52,7 +52,7 @@ yarn preview
 ## Tech Stack
 
 - **Framework:** [Astro](https://astro.build/) (Static Site Generator)
-- **Interactive Components:** React 18
+- **Interactive Components:** React 19
 - **Styling:** Plain CSS
 - **Data:** Markdown files with YAML frontmatter
 - **APIs:** GitHub (@octokit/rest)

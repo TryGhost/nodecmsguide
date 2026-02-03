@@ -12,6 +12,9 @@ const GIST_ARCHIVE_DESCRIPTION = 'NODECMS.GUIDE DATA ARCHIVE';
 
 let octokit;
 
+// In-memory cache to avoid redundant fetches during the same build process
+let memoryCache = null;
+
 function authenticate() {
   if (!GITHUB_TOKEN) {
     throw new Error(
@@ -30,9 +33,9 @@ async function getProjectGitHubData(repo) {
   } catch (error) {
     console.warn(
       `Failed to fetch GitHub data for repository "${repo}":`,
-      error?.message || error
+      error instanceof Error ? error.message : 'Unknown error'
     );
-    return { stars: 0, forks: 0, issues: 0 };
+    return {};
   }
 }
 
@@ -70,8 +73,8 @@ function updateLocalArchive(data) {
 }
 
 async function getArchive() {
-  const gists = await octokit.rest.gists.list({ per_page: 100 });
-  const gistArchive = find(gists.data, { description: GIST_ARCHIVE_DESCRIPTION });
+  const gists = await octokit.paginate(octokit.rest.gists.list, { per_page: 100 });
+  const gistArchive = find(gists, { description: GIST_ARCHIVE_DESCRIPTION });
   if (!gistArchive) {
     return;
   }
@@ -125,9 +128,15 @@ function archiveExpired(archive) {
 }
 
 async function run(projects) {
+  // Return cached data if available (avoids redundant fetches during build)
+  if (memoryCache) {
+    return memoryCache;
+  }
+
   const localArchive = await getLocalArchive();
   if (localArchive && !archiveExpired(localArchive)) {
-    return localArchive.data;
+    memoryCache = localArchive.data;
+    return memoryCache;
   }
 
   // This is synchronous.
@@ -136,13 +145,15 @@ async function run(projects) {
   const archive = await getArchive();
   if (archive && !archiveExpired(archive)) {
     await updateLocalArchive(archive);
-    return archive.data;
+    memoryCache = archive.data;
+    return memoryCache;
   }
 
   const projectData = await getAllProjectData(projects);
   const updatedArchive = await updateArchive(projectData, archive);
   await updateLocalArchive(updatedArchive);
-  return updatedArchive.data;
+  memoryCache = updatedArchive.data;
+  return memoryCache;
 }
 
 export default run;

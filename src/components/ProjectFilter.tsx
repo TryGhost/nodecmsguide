@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { sortBy, reverse, find, difference, filter as lodashFilter, get, isString } from 'lodash-es';
 import { formatNumber } from '../../scripts/util.js';
 
-interface Project {
+export interface Project {
   title: string;
   slug: string;
   openSource: boolean;
@@ -19,6 +19,16 @@ interface Project {
   dataAgeInDays?: number;
   homepage: string;
   repo?: string;
+}
+
+export interface ProjectGitHubData {
+  stars?: number;
+  starsPrevious?: number;
+  forks?: number;
+  forksPrevious?: number;
+  issues?: number;
+  issuesPrevious?: number;
+  dataAgeInDays?: number;
 }
 
 interface ProjectFilterProps {
@@ -137,7 +147,7 @@ function ProjectCard({ project }: ProjectCardProps) {
   return (
     <a href={`/projects/${slug}`} className="card">
       {openSource && <div className="tag">open source</div>}
-      {images && images.length > 0 && <img alt="" className="photos-inside" src="/images/photos.svg" />}
+      {images && images.length > 0 && <img alt="Has screenshots" className="photos-inside" src="/images/photos.svg" />}
       <h4 className={`title ${title.length > 14 ? 'title-small' : ''}`}>{title}</h4>
 
       {hasStats && (

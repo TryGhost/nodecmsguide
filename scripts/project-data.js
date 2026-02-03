@@ -10,11 +10,14 @@ import { max, subWeeks, closestTo, differenceInDays } from 'date-fns';
 export function extractRelevantProjectData(data) {
   return mapValues(data, (project) => {
     const timestamps = map(project, 'timestamp');
-    if (timestamps.length === 0) return {};
-
-    const newestTimestamp = max(timestamps)?.getTime() || Date.now();
-    const targetOldestTimestamp = subWeeks(Date.now(), 1).getTime();
-    const oldestTimestamp = closestTo(targetOldestTimestamp, timestamps)?.getTime() || newestTimestamp;
+    const newestDate = max(timestamps);
+    if (!newestDate) {
+      return {};
+    }
+    const newestTimestamp = newestDate.getTime();
+    const targetOldestDate = subWeeks(new Date(), 1);
+    const closestDate = closestTo(targetOldestDate, timestamps);
+    const oldestTimestamp = (closestDate ?? newestDate).getTime();
     const dataAgeInDays = differenceInDays(Date.now(), oldestTimestamp);
 
     const { forks, stars, issues } = find(project, { timestamp: newestTimestamp }) || {};
