@@ -61,7 +61,7 @@ function formatNumber(num: number | undefined): string {
   <Header shareUrl={shareUrl} shareText={shareText} />
   <div class="main">
     <div class="sheet">
-      {entry.data.opensource === 'Yes' && <div class="tag">open source</div>}
+      {entry.data.opensource.toLowerCase() === 'yes' && <div class="tag">open source</div>}
       <h1>{entry.data.title}</h1>
 
       <div class="links">
