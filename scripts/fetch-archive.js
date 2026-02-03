@@ -3,31 +3,19 @@ import fs from 'fs-extra'
 import { map, find, fromPairs, mapValues } from 'lodash'
 import { differenceInMinutes, differenceInDays } from 'date-fns'
 import Octokit from '@octokit/rest'
-import twitterFollowersCount from 'twitter-followers-count'
 
 require('dotenv').config()
 
 const GITHUB_TOKEN = process.env.NODE_CMS_GITHUB_TOKEN
-const TWITTER_CONSUMER_KEY = process.env.NODE_CMS_TWITTER_CONSUMER_KEY
-const TWITTER_CONSUMER_SECRET = process.env.NODE_CMS_TWITTER_CONSUMER_SECRET
-const TWITTER_ACCESS_TOKEN_KEY = process.env.NODE_CMS_TWITTER_ACCESS_TOKEN_KEY
-const TWITTER_ACCESS_TOKEN_SECRET = process.env.NODE_CMS_TWITTER_ACCESS_TOKEN_SECRET
 const ARCHIVE_FILENAME = 'node-cms-archive.json'
 const LOCAL_ARCHIVE_PATH = `tmp/${ARCHIVE_FILENAME}`
 const GIST_ARCHIVE_DESCRIPTION = 'NODECMS.GUIDE DATA ARCHIVE'
 
 let octokit
-let getTwitterFollowers
 
 function authenticate() {
   octokit = Octokit()
   octokit.authenticate({ type: 'token', token: GITHUB_TOKEN })
-  getTwitterFollowers = twitterFollowersCount({
-    consumer_key: TWITTER_CONSUMER_KEY,
-    consumer_secret: TWITTER_CONSUMER_SECRET,
-    access_token_key: TWITTER_ACCESS_TOKEN_KEY,
-    access_token_secret: TWITTER_ACCESS_TOKEN_SECRET,
-  })
 }
 
 async function getProjectGitHubData(repo) {
@@ -47,14 +35,11 @@ async function getAllProjectGitHubData(repos) {
 
 async function getAllProjectData(projects) {
   const timestamp = Date.now()
-  const twitterScreenNames = map(projects, 'twitter').filter(val => val)
-  const twitterFollowers = await getTwitterFollowers(twitterScreenNames)
   const gitHubRepos = map(projects, 'repo').filter(val => val)
   const gitHubReposData = await getAllProjectGitHubData(gitHubRepos)
-  const data = projects.reduce((obj, { slug, repo, twitter }) => {
-    const twitterData = twitter ? { followers: twitterFollowers[twitter] } : {}
+  const data = projects.reduce((obj, { slug, repo }) => {
     const gitHubData = repo ? { ...(gitHubReposData[repo]) } : {}
-    return { ...obj, [slug]: [{ timestamp, ...twitterData, ...gitHubData }] }
+    return { ...obj, [slug]: [{ timestamp, ...gitHubData }] }
   }, {})
   return { timestamp, data }
 }

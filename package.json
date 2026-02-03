@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "netlify dev",
-    "start": "react-static start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-static start",
     "stage": "react-static build --staging",
     "build": "react-static build",
     "serve": "serve dist -p 3000"
@@ -28,8 +28,7 @@
     "react-share": "^3.0.0",
     "react-static": "^5.9.12",
     "slug": "^2.0.0",
-    "styled-components": "^3",
-    "twitter-followers-count": "^1.0.0"
+    "styled-components": "^3"
   },
   "devDependencies": {
     "babel-plugin-import-glob": "^2.0.0",

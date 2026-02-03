@@ -28,7 +28,6 @@ function mapProjectFrontMatter ({
   homepage,
   opensource,
   supportedgenerators,
-  twitter,
   typeofcms,
   description,
   images,
@@ -42,7 +41,6 @@ function mapProjectFrontMatter ({
     homepage,
     openSource: opensource.toLowerCase() === 'yes',
     generators: supportedgenerators,
-    twitter,
     type: typeofcms,
     description,
     images,
@@ -62,22 +60,19 @@ function extractRelevantProjectData (data) {
     const oldestTimestamp = dateFns.closestTo(targetOldestTimestamp, timestamps).getTime()
 
     const dataAgeInDays = dateFns.differenceInDays(Date.now(), oldestTimestamp)
-    const { followers, forks, stars, issues } = find(project, { timestamp: newestTimestamp }) || {}
+    const { forks, stars, issues } = find(project, { timestamp: newestTimestamp }) || {}
     const {
       forks: forksPrevious,
       stars: starsPrevious,
       issues: issuesPrevious,
-      followers: followersPrevious,
     } = find(project, { timestamp: oldestTimestamp }) || {}
     return {
-      followers,
       forks,
       stars,
       issues,
       forksPrevious,
       starsPrevious,
       issuesPrevious,
-      followersPrevious,
       dataAgeInDays,
     }
   })

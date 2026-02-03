@@ -24,25 +24,20 @@ yarn
 yarn start
 ```
 
-In order to successfully retrieve Twitter followers and GitHub stars, you will need authentication
-keys for both services.
+In order to successfully retrieve GitHub stars, you will need authentication
+keys for the service.
 
-For GitHub you'll need is a personal access token with permission to create Gists. This can be generated at
-<https://github.com/settings/tokens>. For Twitter, you need to create an application at
-<https://apps.twitter.com> to get the necessary tokens. When deploying, you must set the environment
+You'll need a personal access token with permission to create Gists. This can be generated at
+<https://github.com/settings/tokens>. When deploying, you must set the environment
 variables per the example below. If you are developing locally, you can set
 these in a `.env` file at the root of the repo.
 
 ```
 NODE_CMS_GITHUB_TOKEN=examplekey123abc
-NODE_CMS_TWITTER_CONSUMER_KEY=examplekey231abc
-NODE_CMS_TWITTER_CONSUMER_SECRET=examplekey321abc
-NODE_CMS_TWITTER_ACCESS_TOKEN_KEY=examplekey231abc
-NODE_CMS_TWITTER_ACCESS_TOKEN_SECRET=examplekey321abc
 ```
 
-GitHub and Twitter data is cached in the `.tmp` directory, and online in a Gist. If neither has data
-newer than 24 hours old, fresh data is fetched from GitHub and Twitter. Fetching caching occur
+GitHub data is cached in the `.tmp` directory, and online in a Gist. If the data is
+more than 24 hours old, fresh data is fetched from GitHub. Fetching and caching occur
 automatically during the build.
 
 Then visit http://localhost:3000/ - React Static will automatically reload when changes occur.
