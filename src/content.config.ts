@@ -1,11 +1,12 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 /**
  * Projects collection schema
- * Matches existing frontmatter in content/projects/*.md
+ * Matches existing frontmatter in src/content/projects/*.md
  */
 const projects = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     repo: z.string().optional(),
@@ -31,10 +32,10 @@ const projects = defineCollection({
 
 /**
  * Pages collection schema
- * Matches existing frontmatter in content/pages/*.md
+ * Matches existing frontmatter in src/content/pages/*.md
  */
 const pages = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
   schema: z.object({
     title: z.string(),
   }),

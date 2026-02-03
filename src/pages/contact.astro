@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -7,13 +7,13 @@ import Footer from '../components/Footer.astro';
 const SITE_URL = 'https://nodecms.guide';
 
 const pages = await getCollection('pages');
-const contactPage = pages.find((page) => page.id === 'contact.md' || page.slug === 'contact');
+const contactPage = pages.find((page) => page.id === 'contact');
 
 if (!contactPage) {
   throw new Error('Contact page not found');
 }
 
-const { Content } = await contactPage.render();
+const { Content } = await render(contactPage);
 const shareText = 'Check out Node CMS Guide, a leaderboard of Node.js content management systems: ';
 ---
 
