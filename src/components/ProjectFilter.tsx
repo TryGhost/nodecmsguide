@@ -61,12 +61,13 @@ interface DropdownProps {
   groups?: { name: string; label: string }[];
   selection: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  'aria-label': string;
 }
 
-function Dropdown({ emptyLabel, options, groups, selection, onChange }: DropdownProps) {
+function Dropdown({ emptyLabel, options, groups, selection, onChange, 'aria-label': ariaLabel }: DropdownProps) {
   return (
     <div className="dropdown">
-      <select value={selection} className="dropdown-select" onChange={onChange}>
+      <select value={selection} className="dropdown-select" onChange={onChange} aria-label={ariaLabel}>
         {emptyLabel && <option value="">{emptyLabel}</option>}
         {options
           .filter((opt) => isString(opt) || !(opt as SortOption).group)
@@ -360,23 +361,26 @@ export default function ProjectFilter({ projects, types, generators }: ProjectFi
             options={types}
             selection={filter.type || ''}
             onChange={handleFilterChange('type')}
+            aria-label="Filter by CMS type"
           />
           <Dropdown
             emptyLabel="Any SSG"
             options={generators}
             selection={filter.ssg || ''}
             onChange={handleFilterChange('ssg')}
+            aria-label="Filter by static site generator"
           />
           <Dropdown
             emptyLabel="Any License"
             options={LICENSES}
             selection={filter.license || ''}
             onChange={handleFilterChange('license')}
+            aria-label="Filter by license"
           />
         </div>
         <div className="projects-sort">
           <div className="control-label">Sort</div>
-          <Dropdown options={SORTS} groups={SORT_GROUPS} selection={sort} onChange={handleSortChange} />
+          <Dropdown options={SORTS} groups={SORT_GROUPS} selection={sort} onChange={handleSortChange} aria-label="Sort projects by" />
         </div>
       </div>
 
