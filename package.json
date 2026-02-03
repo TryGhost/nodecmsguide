@@ -18,7 +18,7 @@
     "date-fns": "4.1.0",
     "dotenv": "17.2.3",
     "fs-extra": "11.2.0",
-    "lodash-es": "4.17.21",
+    "lodash-es": "4.17.23",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-share": "5.2.2",
