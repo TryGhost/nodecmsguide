@@ -9,7 +9,10 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     repo: z.string().optional(),
-    homepage: z.string().url().optional(),
+    homepage: z
+      .string()
+      .url({ message: 'homepage must be a valid URL (e.g., https://example.com)' })
+      .optional(),
     twitter: z.string().optional(),
     opensource: z.enum(['Yes', 'No']),
     typeofcms: z.string(),
