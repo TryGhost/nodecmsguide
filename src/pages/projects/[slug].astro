@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { toSlug } from '../../../scripts/util.js';
+import { toSlug, formatNumber } from '../../../scripts/util.js';
 import fetchArchive from '../../../scripts/fetch-archive.js';
 import { extractRelevantProjectData } from '../../../scripts/project-data.js';
 import { pickBy } from 'lodash-es';
@@ -50,11 +50,6 @@ const project = pickBy({ ...projectDetails[0], ...data }, (val) => val !== undef
 
 const shareUrl = `${SITE_URL}/projects/${slug}`;
 const shareText = `Check out ${entry.data.title}, a Node.js content management system: `;
-
-function formatNumber(num: number | undefined): string {
-  if (typeof num !== 'number') return 'N/A';
-  return num.toLocaleString();
-}
 ---
 
 <BaseLayout title={entry.data.title} shareUrl={shareUrl} shareText={shareText}>

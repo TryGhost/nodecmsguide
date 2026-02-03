@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { sortBy, reverse, find, difference, filter as lodashFilter, get, isString } from 'lodash-es';
+import { formatNumber } from '../../scripts/util.js';
 
 interface Project {
   title: string;
@@ -97,11 +98,6 @@ function Dropdown({ emptyLabel, options, groups, selection, onChange, 'aria-labe
       </select>
     </div>
   );
-}
-
-function formatNumber(num: number | undefined): string {
-  if (typeof num !== 'number') return 'N/A';
-  return num.toLocaleString('en-US');
 }
 
 function getChange(current: number | undefined, previous: number): string {
