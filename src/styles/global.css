@@ -249,6 +249,27 @@ pre {
   color: #222;
 }
 
+.detail-link {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 18px;
+}
+
+.detail-link .icon {
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
+}
+
+.site-generators {
+  margin: 20px 0 28px;
+}
+
+.site-generators .title {
+  font-weight: 700;
+  margin-right: 12px;
+}
+
 .sheet p {
   margin: 0 0 32px;
 }
@@ -905,4 +926,123 @@ a.deploy-btn-interior img {
   .project:nth-of-type(4n+1) {
     clear: both;
   }
+}
+
+/* ProjectFilter component styles (moved from inline to avoid hydration errors) */
+.control-label {
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.license-section-header {
+  font-size: 32px;
+  font-weight: 400;
+  margin-left: 5px;
+  margin-top: 48px;
+  padding: 0 22px;
+}
+
+@media (min-width: 700px) {
+  .license-section-header {
+    padding: 0;
+  }
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ProjectCard styles (moved from inline to avoid hydration errors) */
+.open-source-stats {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background: #fcfcfc;
+  padding: 18px;
+  margin: 16px -18px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-item {
+  font-size: 15px;
+  text-align: center;
+  color: #313d3e;
+  width: 25%;
+}
+
+.stat-item svg {
+  fill: #313d3e;
+}
+
+.stat-item.disabled {
+  color: #bbb;
+}
+
+.stat-item.disabled svg {
+  fill: #bbb;
+}
+
+.stat-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+
+.change {
+  font-size: 14px;
+  display: block;
+}
+
+.change.up {
+  color: #31bb47;
+}
+
+.change.down {
+  color: #c91b1b;
+}
+
+.data-point {
+  margin-top: 8px;
+}
+
+.data-point p {
+  margin-top: 0;
+}
+
+.data-point-title {
+  display: inline;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.title-small {
+  font-size: 24px;
+  padding-top: 7px !important;
+  padding-bottom: 10px !important;
+}
+
+/* ShareButtons component styles (moved from inline to avoid hydration errors) */
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.share-buttons button {
+  cursor: pointer;
+}
+
+.share-buttons button:hover circle {
+  transition: fill 0.1s ease;
+}
+
+.share-buttons button:first-child:hover circle {
+  fill: #1da1f2 !important;
+}
+
+.share-buttons button:last-child:hover circle {
+  fill: #ff4500 !important;
 }

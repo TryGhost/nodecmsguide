@@ -100,7 +100,7 @@ function Dropdown({ emptyLabel, options, groups, selection, onChange }: Dropdown
 
 function formatNumber(num: number | undefined): string {
   if (typeof num !== 'number') return 'N/A';
-  return num.toLocaleString();
+  return num.toLocaleString('en-US');
 }
 
 function getChange(current: number | undefined, previous: number): string {
@@ -232,64 +232,6 @@ function ProjectCard({ project }: ProjectCardProps) {
         <p>{generators.join(', ')}</p>
       </div>
 
-      <style>{`
-        .open-source-stats {
-          border-top: 1px solid #eee;
-          border-bottom: 1px solid #eee;
-          background: #fcfcfc;
-          padding: 18px;
-          margin: 16px -18px 0;
-          display: flex;
-          justify-content: space-between;
-        }
-        .stat-item {
-          font-size: 15px;
-          text-align: center;
-          color: #313d3e;
-          width: 25%;
-        }
-        .stat-item svg {
-          fill: #313d3e;
-        }
-        .stat-item.disabled {
-          color: #bbb;
-        }
-        .stat-item.disabled svg {
-          fill: #bbb;
-        }
-        .stat-icon {
-          display: inline-block;
-          width: 18px;
-          height: 18px;
-        }
-        .change {
-          font-size: 14px;
-          display: block;
-        }
-        .change.up {
-          color: #31bb47;
-        }
-        .change.down {
-          color: #c91b1b;
-        }
-        .data-point {
-          margin-top: 8px;
-        }
-        .data-point p {
-          margin-top: 0;
-        }
-        .data-point-title {
-          display: inline;
-          font-size: 14px;
-          font-weight: 600;
-          margin-right: 4px;
-        }
-        .title-small {
-          font-size: 24px;
-          padding-top: 7px !important;
-          padding-bottom: 10px !important;
-        }
-      `}</style>
     </a>
   );
 }
@@ -439,30 +381,6 @@ export default function ProjectFilter({ projects, types, generators }: ProjectFi
       </div>
 
       {renderProjects()}
-
-      <style>{`
-        .control-label {
-          font-weight: 600;
-          margin-left: 5px;
-        }
-        .license-section-header {
-          font-size: 32px;
-          font-weight: 400;
-          margin-left: 5px;
-          margin-top: 48px;
-          padding: 0 22px;
-        }
-        @media (min-width: 700px) {
-          .license-section-header {
-            padding: 0;
-          }
-        }
-        .clearfix::after {
-          content: "";
-          display: table;
-          clear: both;
-        }
-      `}</style>
     </div>
   );
 }
