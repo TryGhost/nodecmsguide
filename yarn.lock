@@ -8517,12 +8517,10 @@ slice-ansi@^2.1.0:
     astral-regex "^1.0.0"
     is-fullwidth-code-point "^2.0.0"
 
-slug@^2.0.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/slug/-/slug-2.1.1.tgz#08df390d4b4d51bafb41ac0067c0c2dd70734ef2"
-  integrity sha512-yNGhDdS0DR0JyxnPC84qIx/Vd01RHVY4guJeBqBNdBoOLNWnzw5zkWJvxVSmsuUb92bikdnQFnw3PfGY8uZ82g==
-  dependencies:
-    unicode ">= 0.3.1"
+slug@^11.0.0:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/slug/-/slug-11.0.1.tgz#917eef01e211c12f7a28727911c023f9ce01349b"
+  integrity sha512-VrM060OM/E7rdLQSnp6JHrzFfJFmqQBp0+TMhZStnEB8PfNliaZ9UWYjTHGHLUFVJorZ8TjVd/aKvIxHWU2O7g==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
@@ -9329,11 +9327,6 @@ unbzip2-stream@^1.0.9:
   dependencies:
     buffer "^5.2.1"
     through "^2.3.8"
-
-"unicode@>= 0.3.1":
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/unicode/-/unicode-13.0.0.tgz#0775fe86cdbb1fa30e8d060afe194f71aa0c5306"
-  integrity sha512-osNPLT4Lqna/sV6DQikrB8m4WxR61/k0fnhfKnkPGcZImczW3IysRXvWxfdqGUjh0Ju2o/tGGgu46mlfc/cpZw==
 
 union-value@^1.0.0:
   version "1.0.1"
