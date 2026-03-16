@@ -103,9 +103,12 @@ async function updateArchive({ timestamp, data }, archive) {
   const preppedData = archive
     ? {
         timestamp,
-        data: mapValues(data, (projectData, name) => {
-          const projectArchive = removeOutdated(archive.data[name] || [], 30);
-          return [...projectData, ...projectArchive];
+        data: mapValues({ ...archive.data, ...data }, (projectData, name) => {
+          if (data[name]) {
+            const projectArchive = removeOutdated(archive.data[name] || [], 30);
+            return [...data[name], ...projectArchive];
+          }
+          return removeOutdated(projectData, 30);
         }),
       }
     : { timestamp, data };
