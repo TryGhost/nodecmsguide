@@ -14,7 +14,7 @@
   "dependencies": {
     "@astrojs/react": "4.4.2",
     "@octokit/rest": "22.0.1",
-    "astro": "5.18.0",
+    "astro": "5.18.1",
     "date-fns": "4.1.0",
     "dotenv": "17.2.3",
     "fs-extra": "11.2.0",
