@@ -22,13 +22,16 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-// Map project data
-const projectDetails = [mapProjectEntry(entry)];
+// Map current project details
+const currentProject = mapProjectEntry(entry);
 
-// Fetch GitHub data
+// Fetch GitHub data for ALL projects so the archive/cache stays complete
+const allEntries = await getCollection('projects');
+const allProjectDetails = allEntries.map(mapProjectEntry);
+
 let projectData: Record<string, ProjectGitHubData> = {};
 try {
-  const projectDataRaw = await fetchArchive(projectDetails);
+  const projectDataRaw = await fetchArchive(allProjectDetails);
   projectData = extractRelevantProjectData(projectDataRaw);
 } catch (error) {
   console.warn('Failed to fetch GitHub data:', error instanceof Error ? error.message : 'Unknown error');
@@ -36,7 +39,7 @@ try {
 
 const slug = toSlug(entry.data.title);
 const data = projectData[slug] || {};
-const project = pickBy({ ...projectDetails[0], ...data }, (val) => val !== undefined && val !== null);
+const project = pickBy({ ...currentProject, ...data }, (val) => val !== undefined && val !== null);
 
 const shareUrl = `${SITE_URL}/projects/${slug}`;
 const shareText = `Check out ${entry.data.title}, a Node.js content management system: `;
