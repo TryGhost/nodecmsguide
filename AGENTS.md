@@ -106,6 +106,7 @@ Load projects/pages via `getCollection('projects')` / `getEntry('pages', slug)` 
 Required for build-time GitHub data fetching:
 
 - `NODE_CMS_GITHUB_TOKEN` — GitHub personal access token with permission to create Gists
+- `NODE_CMS_USE_FIXTURE` — set to `1` to bypass GitHub entirely and load the checked-in fixture at `test/fixtures/node-cms-archive.json`. Used by CI and the test suite; not for production builds.
 
 For local development, create a `.env` file at the repo root. On Netlify, this is configured in the site's environment settings.
 
@@ -129,10 +130,27 @@ To refresh production data, trigger a new Netlify deploy.
 
 ## Testing
 
-No test suite is configured yet (a follow-up to add vitest + regression tests is planned). Manual verification:
+Three layers of automated tests, all wired into CI:
+
+1. **Unit tests (vitest)** — `scripts/__tests__/*.test.js` cover `fetch-archive.js`, `project-data.js`, and `util.js`. 100% line coverage is enforced.
+   - `yarn test` — run once
+   - `yarn test:watch` — watch mode
+   - `yarn test:coverage` — with v8 coverage
+2. **End-to-end tests (Playwright)** — `tests/e2e/*.spec.ts` split into two kinds:
+   - `build-output.spec.ts` — reads files from `dist/` to assert page structure, slug routing, and astro-island hydration markers. No browser required.
+   - `render.spec.ts` — drives `astro preview` with real Chromium to verify hydration, client-side filtering, ShareButtons, and the 404 path.
+   - Run with `NODE_CMS_USE_FIXTURE=1 yarn build && NODE_CMS_USE_FIXTURE=1 yarn test:e2e`.
+3. **Quality gates** — `yarn lint` (ESLint flat config) and `yarn typecheck` (`astro check`) must pass.
+
+CI workflows live in `.github/workflows/`:
+
+- `ci.yml` — runs on every PR and push to main. Lint, typecheck, unit tests, build with fixture mode, and E2E. No secrets required.
+- `smoke.yml` — runs on a daily cron and on-demand via `workflow_dispatch`. Does a real `yarn build` against the live GitHub API using the `NODE_CMS_GITHUB_TOKEN` repo secret, then verifies the archive gist was updated. This is the only place the real gist-creation path is exercised.
+
+Manual verification:
 
 1. `yarn dev` — verify changes interactively
-2. `yarn build && yarn preview` — verify the production build
+2. `NODE_CMS_USE_FIXTURE=1 yarn build && yarn preview` — verify the production build without needing a GitHub token
 
 ## Notes
 

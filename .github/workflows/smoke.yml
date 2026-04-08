@@ -1,0 +1,61 @@
+name: Smoke (real GitHub)
+
+# End-to-end smoke test that exercises the real GitHub API path:
+#   scripts/fetch-archive.js -> Octokit -> gist create/update.
+#
+# The PR workflow (ci.yml) runs everything with NODE_CMS_USE_FIXTURE=1 so
+# contributors don't need secrets, builds are deterministic, and we don't
+# mutate the archive gist on every PR. This workflow complements that by
+# periodically proving the real pipeline still works in production conditions.
+
+on:
+  schedule:
+    # Daily at 06:17 UTC — off the hour to avoid cron stampedes.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Build against real GitHub
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: yarn
+      - run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Build site (real GitHub + gist archive)
+        env:
+          NODE_CMS_GITHUB_TOKEN: ${{ secrets.NODE_CMS_GITHUB_TOKEN }}
+        run: yarn build
+
+      - name: Verify archive gist round-trip
+        env:
+          NODE_CMS_GITHUB_TOKEN: ${{ secrets.NODE_CMS_GITHUB_TOKEN }}
+        run: |
+          node --input-type=module -e "
+          import { getArchive, authenticate } from './scripts/fetch-archive.js';
+          authenticate();
+          const archive = await getArchive();
+          if (!archive) {
+            console.error('FAIL: no archive gist found after build');
+            process.exit(1);
+          }
+          const ageHours = (Date.now() - archive.timestamp) / (1000 * 60 * 60);
+          if (ageHours > 25) {
+            console.error('FAIL: archive gist timestamp is', ageHours.toFixed(1), 'hours old');
+            process.exit(1);
+          }
+          const projectCount = Object.keys(archive.data || {}).length;
+          if (projectCount < 10) {
+            console.error('FAIL: archive gist has only', projectCount, 'projects');
+            process.exit(1);
+          }
+          console.log('OK: archive gist has', projectCount, 'projects, age', ageHours.toFixed(1), 'hours');
+          "

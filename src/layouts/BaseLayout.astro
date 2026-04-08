@@ -3,11 +3,9 @@ import '../styles/global.css';
 
 interface Props {
   title?: string;
-  shareUrl?: string;
-  shareText?: string;
 }
 
-const { title, shareUrl = 'https://nodecms.guide', shareText = 'Check out Node CMS Guide, a leaderboard of Node.js content management systems: ' } = Astro.props;
+const { title } = Astro.props;
 const pageTitle = title ? `${title} | NodeCMSGuide` : 'NodeCMSGuide | Node.js Content Management System leaderboard';
 ---
 
