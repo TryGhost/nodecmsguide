@@ -5,26 +5,37 @@ import { differenceInMinutes, differenceInDays } from 'date-fns';
 import { Octokit } from '@octokit/rest';
 import 'dotenv/config';
 
-const GITHUB_TOKEN = process.env.NODE_CMS_GITHUB_TOKEN;
 const ARCHIVE_FILENAME = 'node-cms-archive.json';
 const LOCAL_ARCHIVE_PATH = `tmp/${ARCHIVE_FILENAME}`;
 const GIST_ARCHIVE_DESCRIPTION = 'NODECMS.GUIDE DATA ARCHIVE';
+const FIXTURE_PATH = 'test/fixtures/node-cms-archive.json';
 
 let octokit;
 
 // In-memory cache to avoid redundant fetches during the same build process
 let memoryCache = null;
 
-function authenticate() {
-  if (!GITHUB_TOKEN) {
+export function authenticate() {
+  const token = process.env.NODE_CMS_GITHUB_TOKEN;
+  if (!token) {
     throw new Error(
       'Environment variable NODE_CMS_GITHUB_TOKEN is not set. Please provide a valid GitHub token.'
     );
   }
-  octokit = new Octokit({ auth: GITHUB_TOKEN });
+  octokit = new Octokit({ auth: token });
+  return octokit;
 }
 
-async function getProjectGitHubData(repo) {
+export function _setOctokitForTesting(instance) {
+  octokit = instance;
+}
+
+export function _resetCacheForTesting() {
+  memoryCache = null;
+  octokit = undefined;
+}
+
+export async function getProjectGitHubData(repo) {
   try {
     const [owner, repoName] = repo.split('/');
     const { data } = await octokit.rest.repos.get({ owner, repo: repoName });
@@ -39,7 +50,7 @@ async function getProjectGitHubData(repo) {
   }
 }
 
-async function getAllProjectGitHubData(repos) {
+export async function getAllProjectGitHubData(repos) {
   const data = await Promise.all(
     repos.map(async (repo) => {
       const repoData = await getProjectGitHubData(repo);
@@ -49,7 +60,7 @@ async function getAllProjectGitHubData(repos) {
   return fromPairs(data);
 }
 
-async function getAllProjectData(projects) {
+export async function getAllProjectData(projects) {
   const timestamp = Date.now();
   const gitHubRepos = map(projects, 'repo').filter((val) => val);
   const gitHubReposData = await getAllProjectGitHubData(gitHubRepos);
@@ -60,7 +71,7 @@ async function getAllProjectData(projects) {
   return { timestamp, data };
 }
 
-async function getLocalArchive() {
+export async function getLocalArchive() {
   try {
     return await fs.readJson(path.join(process.cwd(), LOCAL_ARCHIVE_PATH));
   } catch {
@@ -68,11 +79,11 @@ async function getLocalArchive() {
   }
 }
 
-function updateLocalArchive(data) {
+export function updateLocalArchive(data) {
   return fs.outputJson(path.join(process.cwd(), LOCAL_ARCHIVE_PATH), data);
 }
 
-async function getArchive() {
+export async function getArchive() {
   const gists = await octokit.paginate(octokit.rest.gists.list, { per_page: 100 });
   const gistArchive = find(gists, { description: GIST_ARCHIVE_DESCRIPTION });
   if (!gistArchive) {
@@ -83,7 +94,7 @@ async function getArchive() {
   return { ...archive, id: gistArchive.id };
 }
 
-function createGist(content) {
+export function createGist(content) {
   return octokit.rest.gists.create({
     files: { [ARCHIVE_FILENAME]: { content } },
     public: true,
@@ -91,15 +102,15 @@ function createGist(content) {
   });
 }
 
-function editGist(content, id) {
+export function editGist(content, id) {
   return octokit.rest.gists.update({ gist_id: id, files: { [ARCHIVE_FILENAME]: { content } } });
 }
 
-function removeOutdated(data, days) {
+export function removeOutdated(data, days) {
   return data.filter(({ timestamp }) => differenceInDays(Date.now(), timestamp) <= days);
 }
 
-async function updateArchive({ timestamp, data }, archive) {
+export async function updateArchive({ timestamp, data }, archive) {
   const preppedData = archive
     ? {
         timestamp,
@@ -126,11 +137,17 @@ async function updateArchive({ timestamp, data }, archive) {
  * minutes short of 24 hours, just in case a daily refresh webhook gets called
  * a little early.
  */
-function archiveExpired(archive) {
+export function archiveExpired(archive) {
   return differenceInMinutes(Date.now(), archive.timestamp) > 1410;
 }
 
-async function run(projects) {
+export async function run(projects) {
+  // Fixture mode short-circuit for CI / tests — never touches Octokit.
+  if (process.env.NODE_CMS_USE_FIXTURE === '1') {
+    const fixture = await fs.readJson(path.join(process.cwd(), FIXTURE_PATH));
+    return fixture.data;
+  }
+
   // Return cached data if available (avoids redundant fetches during build)
   if (memoryCache) {
     return memoryCache;

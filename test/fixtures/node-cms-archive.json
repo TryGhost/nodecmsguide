@@ -1,0 +1,25 @@
+{
+  "timestamp": 4072118400000,
+  "data": {
+    "ghost": [
+      { "timestamp": 4072118400000, "stars": 48000, "forks": 10500, "issues": 120 },
+      { "timestamp": 4071513600000, "stars": 47800, "forks": 10480, "issues": 115 },
+      { "timestamp": 4070908800000, "stars": 47500, "forks": 10450, "issues": 110 }
+    ],
+    "strapi": [
+      { "timestamp": 4072118400000, "stars": 65000, "forks": 8200, "issues": 350 },
+      { "timestamp": 4071513600000, "stars": 64700, "forks": 8180, "issues": 340 },
+      { "timestamp": 4070908800000, "stars": 64500, "forks": 8150, "issues": 330 }
+    ],
+    "payload-cms": [
+      { "timestamp": 4072118400000, "stars": 32000, "forks": 2100, "issues": 80 },
+      { "timestamp": 4071513600000, "stars": 31900, "forks": 2090, "issues": 78 },
+      { "timestamp": 4070908800000, "stars": 31700, "forks": 2080, "issues": 75 }
+    ],
+    "keystone-5": [
+      { "timestamp": 4072118400000, "stars": 9200, "forks": 1200, "issues": 60 },
+      { "timestamp": 4071513600000, "stars": 9180, "forks": 1195, "issues": 58 },
+      { "timestamp": 4070908800000, "stars": 9150, "forks": 1190, "issues": 55 }
+    ]
+  }
+}

@@ -19,7 +19,7 @@ const { Content } = await render(page);
 const shareText = 'Check out Node CMS Guide, a leaderboard of Node.js content management systems: ';
 ---
 
-<BaseLayout title={page.data.title} shareUrl={SITE_URL} shareText={shareText}>
+<BaseLayout title={page.data.title}>
   <Header shareUrl={SITE_URL} shareText={shareText} />
   <div class="content">
     <div class="sheet text">

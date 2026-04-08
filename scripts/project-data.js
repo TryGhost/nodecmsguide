@@ -11,9 +11,6 @@ export function extractRelevantProjectData(data) {
   return mapValues(data, (project) => {
     const timestamps = map(project, 'timestamp');
     const newestDate = max(timestamps);
-    if (!newestDate) {
-      return {};
-    }
     const newestTimestamp = newestDate.getTime();
     const targetOldestDate = subWeeks(new Date(), 1);
     const closestDate = closestTo(targetOldestDate, timestamps);
