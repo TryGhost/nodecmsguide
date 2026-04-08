@@ -51,7 +51,7 @@ yarn build          # Production build to /dist
 yarn preview        # Serve the production build locally
 ```
 
-There is no `yarn start`, `yarn stage`, `yarn serve`, or `yarn lint` script — don't reference them.
+There is no `yarn start`, `yarn stage`, or `yarn serve` script — don't reference them. Tests, lint, and typecheck scripts are documented under [Testing](#testing).
 
 ## Adding a New CMS
 
