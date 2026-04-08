@@ -30,3 +30,6 @@ tmp
 
 # Playwright MCP snapshots
 .playwright-mcp
+
+# Claude Code local settings (user-specific permissions)
+.claude/settings.local.json
