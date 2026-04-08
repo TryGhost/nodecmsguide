@@ -2,65 +2,75 @@
 
 Project-specific instructions for AI agents working on this codebase.
 
+> `CLAUDE.md` is a symlink to this file — update `AGENTS.md` and both stay in sync.
+
 ## Project Overview
 
-**nodecms.guide** is a Node.js CMS leaderboard and comparison website maintained by Ghost. It showcases 55+ Node.js-based content management systems with live GitHub metrics.
+**nodecms.guide** is a Node.js CMS leaderboard and comparison website maintained by Ghost. It showcases 60+ Node.js-based content management systems with live GitHub metrics.
 
 **Live site:** https://nodecms.guide
 
 ## Tech Stack
 
-- **Framework:** React 16.x with React Static (SSG)
-- **Styling:** Styled Components 3.x (CSS-in-JS)
-- **Routing:** React Router 4.2
-- **Data:** Markdown files with YAML frontmatter (gray-matter)
-- **APIs:** GitHub (@octokit/rest)
+- **Framework:** [Astro](https://astro.build/) 5.x (static output)
+- **Interactive Components:** React 19 via `@astrojs/react`
+- **Language:** TypeScript (strict, extends `astro/tsconfigs/strict`)
+- **Styling:** Plain CSS (`src/styles/global.css`) + scoped styles in `.astro` components
+- **Content:** Markdown + YAML frontmatter loaded via Astro Content Collections (`astro:content`)
+- **APIs:** GitHub (`@octokit/rest`)
 - **Hosting:** Netlify
+- **Node:** >= 22
 
 ## Project Structure
 
 ```
-/content/
-  /projects/        # CMS definitions (Markdown + YAML frontmatter)
-  /pages/           # Static pages
 /src/
-  /App/             # Main app wrapper, routing, global styles
-  /Home/            # Homepage with filtering/sorting
-  /Project/         # Individual project detail pages
-  /images/          # Static images
-/scripts/           # Data fetching utilities
-/public/            # Static assets
+  /components/      # Astro + React components (Header, Footer, ProjectFilter, ShareButtons)
+  /content/
+    /projects/      # CMS definitions (Markdown + YAML frontmatter) — one file per CMS
+    /pages/         # Static page content (contact, contribute)
+  /layouts/         # BaseLayout.astro
+  /pages/           # Astro routes: index.astro, [slug].astro, projects/[slug].astro, 404.astro
+  /styles/          # global.css
+  /images/          # Images referenced from components
+  content.config.ts # Content collection schemas (zod)
+/scripts/           # Build-time data fetching (fetch-archive.js, project-data.js, util.js)
+/public/            # Static assets served as-is (favicon, robots.txt, /images/*)
+/dist/              # Build output (gitignored)
+/tmp/               # Local cache for GitHub archive data
 ```
+
+Content collections are defined in `src/content.config.ts` with two collections: `projects` and `pages`. Any new frontmatter field must be added to the zod schema there.
 
 ## Development Commands
 
 ```bash
 yarn install        # Install dependencies
-yarn dev            # Dev server via Netlify CLI (fetches env vars from Netlify)
-yarn start          # Dev server at localhost:3000 (no env vars)
+yarn dev            # Astro dev server at http://localhost:4321
 yarn build          # Production build to /dist
-yarn stage          # Staging build
-yarn serve          # Serve production build locally
+yarn preview        # Serve the production build locally
 ```
 
-**Recommended:** Use `yarn dev` for local development. This runs `netlify dev` which automatically fetches environment variables from Netlify, enabling GitHub API calls without local `.env` setup.
+There is no `yarn start`, `yarn stage`, `yarn serve`, or `yarn lint` script — don't reference them.
 
 ## Adding a New CMS
 
-Create a new Markdown file in `/content/projects/` with this frontmatter structure:
+Create a new Markdown file in `src/content/projects/` with this frontmatter (schema enforced by `src/content.config.ts`):
 
 ```yaml
 ---
 title: CMS Name
 repo: owner/repo                    # GitHub repo (omit for closed source)
-homepage: https://example.com
-opensource: "Yes"                   # "Yes" or "No"
+homepage: https://example.com       # Must be a valid URL if present
+twitter: handle                     # Optional
+opensource: "Yes"                   # "Yes" | "No" (required)
 typeofcms: "API Driven"             # See types below
 supportedgenerators:
   - All                             # Or specific: Gatsby, Next, Hugo, etc.
 description: Short description for the listing card.
 images:
   - path: /images/cms-screenshot.png
+startertemplaterepo: owner/repo     # Optional
 ---
 
 Extended Markdown content for the detail page.
@@ -74,58 +84,58 @@ Extended Markdown content for the detail page.
 
 ## Code Patterns
 
+### Components
+
+- Prefer `.astro` components for static markup. Reach for React (`.tsx`) only when client-side interactivity is required (e.g. `ProjectFilter`, `ShareButtons`) and add the appropriate `client:*` directive at the usage site.
+- Follow the existing TypeScript style — the project is strict, so type all props and external values explicitly.
+
 ### Styling
 
-Use styled-components for all new styles:
+Global styles live in `src/styles/global.css`. Component-specific styles go in scoped `<style>` blocks inside `.astro` files. There is no styled-components or CSS-in-JS here anymore.
 
-```javascript
-import styled from 'styled-components'
+### Content access
 
-const Container = styled.div`
-  padding: 20px;
-  @media (max-width: 768px) {
-    padding: 10px;
-  }
-`
-```
+Load projects/pages via `getCollection('projects')` / `getEntry('pages', slug)` from `astro:content`. The schema in `src/content.config.ts` is the source of truth for available fields.
 
-### Module Imports
+### Module system
 
-Babel module-resolver is configured. Use aliases where defined.
-
-### ESLint
-
-Extends `react-tools` preset. Run `yarn lint` before committing.
+`package.json` has `"type": "module"` — use ESM (`import`/`export`) everywhere, including in `/scripts`.
 
 ## Environment Variables
 
-Required for data fetching. These are configured in Netlify and automatically available when using `yarn dev`:
+Required for build-time GitHub data fetching:
 
-- `NODE_CMS_GITHUB_TOKEN` - GitHub personal access token
+- `NODE_CMS_GITHUB_TOKEN` — GitHub personal access token with permission to create Gists
 
-No local `.env` file needed when using `yarn dev` (Netlify CLI fetches these automatically).
+For local development, create a `.env` file at the repo root. On Netlify, this is configured in the site's environment settings.
+
+## Data Fetching
+
+GitHub metrics are fetched at build time by the scripts in `/scripts`:
+
+- Raw archive data is cached locally in `/tmp` and remotely in a GitHub Gist
+- If the cache is more than 24 hours old, fresh data is pulled from GitHub
+- `project-data.js` compares newest data with data from ~1 week ago to compute trends
+
+To refresh production data, trigger a new Netlify deploy.
 
 ## Common Tasks
 
 ### Adding images for a CMS
 
-1. Add images to `/public/images/`
-2. Reference in frontmatter: `path: /images/filename.png`
-3. Use in Markdown body: `<img class="simple" src="/images/filename.png" alt="..." />`
-
-### Updating metrics
-
-Metrics are fetched at build time. Trigger a new Netlify deploy to refresh data.
+1. Add the image to `/public/images/`
+2. Reference it in frontmatter: `path: /images/filename.png`
+3. Use it in the Markdown body: `<img class="simple" src="/images/filename.png" alt="..." />`
 
 ## Testing
 
-No test suite currently configured. Manual testing:
+No test suite is configured yet (a follow-up to add vitest + regression tests is planned). Manual verification:
 
-1. `yarn start` - verify changes in dev
-2. `yarn build && yarn serve` - verify production build
+1. `yarn dev` — verify changes interactively
+2. `yarn build && yarn preview` — verify the production build
 
 ## Notes
 
 - All content changes require a rebuild to appear on the live site
-- GitHub metrics are cached in a GitHub Gist (24-hour refresh)
-- Filtering and sorting happens client-side in React
+- Filtering and sorting happens client-side in the `ProjectFilter` React component
+- `CLAUDE.md` is a symlink to this file — edit `AGENTS.md`
