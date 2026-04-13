@@ -1960,10 +1960,10 @@ astro-eslint-parser@^1.3.0, astro-eslint-parser@^1.4.0:
     is-glob "^4.0.3"
     semver "^7.3.8"
 
-astro@6.1.4:
-  version "6.1.4"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-6.1.4.tgz#f64341b2f9b06f8e89ace343e41605102e951e17"
-  integrity sha512-SRy1bONuCHkGWhI5JiWCQKVDVbeaXOikjAVZs/Nz+lvUvubtdLoZfnacmuZHQ9RL2IOkU54M8/qZYm9ypJDKrg==
+astro@6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-6.1.5.tgz#4b2756939fa8e870f6f5623116fcd38fa945aa56"
+  integrity sha512-AJVw/JlssxUCBFi3Hp4djL8Pt7wUQqStBBawCd8cNGBBM2lBzp/rXGguzt4OcMfW+86fs0hpFwMyopHM2r6d3g==
   dependencies:
     "@astrojs/compiler" "^3.0.1"
     "@astrojs/internal-helpers" "0.8.0"
@@ -1981,7 +1981,6 @@ astro@6.1.4:
     cookie "^1.1.1"
     devalue "^5.6.3"
     diff "^8.0.3"
-    dlv "^1.1.3"
     dset "^3.1.4"
     es-module-lexer "^2.0.0"
     esbuild "^0.27.3"
