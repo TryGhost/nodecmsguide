@@ -23,7 +23,7 @@ const projects = defineCollection({
       .array(
         z.object({
           path: z.string(),
-        })
+        }),
       )
       .optional(),
     startertemplaterepo: z.string().optional(),

@@ -19,7 +19,7 @@ export function authenticate() {
   const token = process.env.NODE_CMS_GITHUB_TOKEN;
   if (!token) {
     throw new Error(
-      'Environment variable NODE_CMS_GITHUB_TOKEN is not set. Please provide a valid GitHub token.'
+      'Environment variable NODE_CMS_GITHUB_TOKEN is not set. Please provide a valid GitHub token.',
     );
   }
   octokit = new Octokit({ auth: token });
@@ -44,7 +44,7 @@ export async function getProjectGitHubData(repo) {
   } catch (error) {
     console.warn(
       `Failed to fetch GitHub data for repository "${repo}":`,
-      error instanceof Error ? error.message : 'Unknown error'
+      error instanceof Error ? error.message : 'Unknown error',
     );
     return {};
   }
@@ -55,7 +55,7 @@ export async function getAllProjectGitHubData(repos) {
     repos.map(async (repo) => {
       const repoData = await getProjectGitHubData(repo);
       return [repo, repoData];
-    })
+    }),
   );
   return fromPairs(data);
 }

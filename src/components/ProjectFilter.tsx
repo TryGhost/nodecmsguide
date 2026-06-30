@@ -1,5 +1,13 @@
 import { useState, useMemo } from 'react';
-import { sortBy, reverse, find, difference, filter as lodashFilter, get, isString } from 'lodash-es';
+import {
+  sortBy,
+  reverse,
+  find,
+  difference,
+  filter as lodashFilter,
+  get,
+  isString,
+} from 'lodash-es';
 import { formatNumber } from '../../scripts/util.js';
 
 export interface Project {
@@ -75,10 +83,22 @@ interface DropdownProps {
   'aria-label': string;
 }
 
-function Dropdown({ emptyLabel, options, groups, selection, onChange, 'aria-label': ariaLabel }: DropdownProps) {
+function Dropdown({
+  emptyLabel,
+  options,
+  groups,
+  selection,
+  onChange,
+  'aria-label': ariaLabel,
+}: DropdownProps) {
   return (
     <div className="dropdown">
-      <select value={selection} className="dropdown-select" onChange={onChange} aria-label={ariaLabel}>
+      <select
+        value={selection}
+        className="dropdown-select"
+        onChange={onChange}
+        aria-label={ariaLabel}
+      >
         {emptyLabel && <option value="">{emptyLabel}</option>}
         {options
           .filter((opt) => isString(opt) || !(opt as SortOption).group)
@@ -91,7 +111,7 @@ function Dropdown({ emptyLabel, options, groups, selection, onChange, 'aria-labe
               <option key={key} value={(value as SortOption).name}>
                 {(value as SortOption).label}
               </option>
-            )
+            ),
           )}
         {groups &&
           groups.map((group, idx) => (
@@ -142,17 +162,23 @@ function ProjectCard({ project }: ProjectCardProps) {
   const starsChange = getChange(stars, starsPrevious);
   const forksChange = getChange(forks, forksPrevious);
   const issuesChange = getChange(issues, issuesPrevious);
-  const hasStats = typeof stars === 'number' || typeof forks === 'number' || typeof issues === 'number';
+  const hasStats =
+    typeof stars === 'number' || typeof forks === 'number' || typeof issues === 'number';
 
   return (
     <a href={`/projects/${slug}`} className="card">
       {openSource && <div className="tag">open source</div>}
-      {images && images.length > 0 && <img alt="Has screenshots" className="photos-inside" src="/images/photos.svg" />}
+      {images && images.length > 0 && (
+        <img alt="Has screenshots" className="photos-inside" src="/images/photos.svg" />
+      )}
       <h4 className={`title ${title.length > 14 ? 'title-small' : ''}`}>{title}</h4>
 
       {hasStats && (
         <div className="open-source-stats">
-          <div className={`stat-item ${typeof stars !== 'number' ? 'disabled' : ''}`} title="GitHub stars">
+          <div
+            className={`stat-item ${typeof stars !== 'number' ? 'disabled' : ''}`}
+            title="GitHub stars"
+          >
             <span className="stat-icon">
               <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor">
                 <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
@@ -175,7 +201,10 @@ function ProjectCard({ project }: ProjectCardProps) {
             )}
           </div>
 
-          <div className={`stat-item ${typeof issues !== 'number' ? 'disabled' : ''}`} title="GitHub open issues">
+          <div
+            className={`stat-item ${typeof issues !== 'number' ? 'disabled' : ''}`}
+            title="GitHub open issues"
+          >
             <span className="stat-icon">
               <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor">
                 <path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
@@ -189,7 +218,10 @@ function ProjectCard({ project }: ProjectCardProps) {
               <div>
                 <strong>{formatNumber(issues)}</strong>
                 {dataAgeInDays >= 1 && (
-                  <span className="change" title={`Issues in the last ${dataAgeInDays} day${dataAgeInDays === 1 ? '' : 's'}`}>
+                  <span
+                    className="change"
+                    title={`Issues in the last ${dataAgeInDays} day${dataAgeInDays === 1 ? '' : 's'}`}
+                  >
                     {issuesChange}
                   </span>
                 )}
@@ -199,7 +231,10 @@ function ProjectCard({ project }: ProjectCardProps) {
             )}
           </div>
 
-          <div className={`stat-item ${typeof forks !== 'number' ? 'disabled' : ''}`} title="GitHub forks">
+          <div
+            className={`stat-item ${typeof forks !== 'number' ? 'disabled' : ''}`}
+            title="GitHub forks"
+          >
             <span className="stat-icon">
               <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor">
                 <path
@@ -238,7 +273,6 @@ function ProjectCard({ project }: ProjectCardProps) {
         <h6 className="data-point-title">Supported Site Generators:</h6>
         <p>{generators.join(', ')}</p>
       </div>
-
     </a>
   );
 }
@@ -288,12 +322,13 @@ export default function ProjectFilter({ projects, types, generators }: ProjectFi
     return sortProjects(projects.filter(canShow));
   }, [projects, filter, sort]);
 
-  const handleFilterChange = (filterName: string) => (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilter({
-      ...filter,
-      [filterName]: event.target.value,
-    });
-  };
+  const handleFilterChange =
+    (filterName: string) => (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setFilter({
+        ...filter,
+        [filterName]: event.target.value,
+      });
+    };
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSort(event.target.value);
@@ -386,7 +421,13 @@ export default function ProjectFilter({ projects, types, generators }: ProjectFi
         </div>
         <div className="projects-sort">
           <div className="control-label">Sort</div>
-          <Dropdown options={SORTS} groups={SORT_GROUPS} selection={sort} onChange={handleSortChange} aria-label="Sort projects by" />
+          <Dropdown
+            options={SORTS}
+            groups={SORT_GROUPS}
+            selection={sort}
+            onChange={handleSortChange}
+            aria-label="Sort projects by"
+          />
         </div>
       </div>
 

@@ -18,7 +18,7 @@ test.describe('homepage render', () => {
     for (const slug of ['ghost', 'strapi', 'payload-cms', 'keystone-5']) {
       await expect(
         page.locator(`a.card[href="/projects/${slug}"]`).first(),
-        `card for ${slug} should be visible`
+        `card for ${slug} should be visible`,
       ).toBeVisible();
     }
   });

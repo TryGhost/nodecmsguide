@@ -1,0 +1,61 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "plugins": ["eslint", "typescript", "react", "jsx-a11y", "vitest", "node", "oxc", "unicorn"],
+  "env": {
+    "browser": true,
+    "es2024": true
+  },
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**",
+    ".astro/**",
+    "public/**",
+    "tmp/**",
+    "coverage/**",
+    "playwright-report/**",
+    "test-results/**",
+    ".netlify/**"
+  ],
+  "rules": {
+    "no-console": "error",
+    "react/react-in-jsx-scope": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.astro"],
+      "env": {
+        "astro": true,
+        "browser": true,
+        "es2024": true
+      }
+    },
+    {
+      "files": ["src/pages/**/*.astro"],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["scripts/**/*.js", "*.config.js", "*.config.mjs", "*.config.ts"],
+      "env": {
+        "node": true,
+        "es2024": true
+      },
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["scripts/__tests__/**/*.test.js", "tests/**/*.{js,ts}"],
+      "env": {
+        "node": true,
+        "vitest": true,
+        "es2024": true
+      }
+    }
+  ]
+}
