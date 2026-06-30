@@ -118,6 +118,8 @@ GitHub metrics are fetched at build time by the scripts in `/scripts`:
 - If the cache is more than 24 hours old, fresh data is pulled from GitHub
 - `project-data.js` compares newest data with data from ~1 week ago to compute trends
 
+Detailed local fixture, archive, CI, and Netlify behavior is documented in `docs/data-fetching.md`.
+
 To refresh production data, trigger a new Netlify deploy.
 
 ## Common Tasks
