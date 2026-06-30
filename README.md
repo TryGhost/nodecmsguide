@@ -2,7 +2,7 @@
 
 [nodecms.guide](https://nodecms.guide), a leaderboard of Node.js content management systems.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ff98559c-c0a7-498d-9989-27f09b139e6f/deploy-status)](https://app.netlify.com/sites/headlesscms/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ff98559c-c0a7-498d-9989-27f09b139e6f/deploy-status)](https://app.netlify.com/projects/nodecmsguide/deploys)
 
 ## Contributing
 
