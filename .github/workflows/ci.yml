@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   lint-and-typecheck:
-    name: Lint & typecheck (Node 22)
+    name: Lint & typecheck (Node 24)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -43,7 +43,7 @@ jobs:
       - run: pnpm typecheck
 
   unit-tests:
-    name: Unit tests (Node 22)
+    name: Unit tests (Node 24)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -77,7 +77,7 @@ jobs:
           retention-days: 7
 
   build:
-    name: Build (Node 22)
+    name: Build (Node 24)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -108,7 +108,7 @@ jobs:
       - run: pnpm build
 
   e2e:
-    name: E2E (Node 22.23.1)
+    name: E2E (Node 24)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
