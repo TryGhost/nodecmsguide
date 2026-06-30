@@ -1,9 +1,4 @@
-import {
-  TwitterShareButton,
-  TwitterIcon,
-  RedditShareButton,
-  RedditIcon,
-} from 'react-share';
+import { TwitterShareButton, TwitterIcon, RedditShareButton, RedditIcon } from 'react-share';
 
 interface ShareButtonsProps {
   shareUrl: string;

@@ -333,9 +333,7 @@ describe('getAllProjectData', () => {
       { slug: 'closed', repo: undefined },
     ]);
     expect(result.timestamp).toBe(Date.now());
-    expect(result.data.ghost).toEqual([
-      { timestamp: Date.now(), stars: 10, forks: 1, issues: 0 },
-    ]);
+    expect(result.data.ghost).toEqual([{ timestamp: Date.now(), stars: 10, forks: 1, issues: 0 }]);
     // Projects without a repo get an entry with only a timestamp.
     expect(result.data.closed).toEqual([{ timestamp: Date.now() }]);
   });

@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.astro/**",
+    "**/public/**",
+    "**/tmp/**",
+    "**/coverage/**",
+    "**/playwright-report/**",
+    "**/test-results/**",
+    "**/.netlify/**",
+    "pnpm-lock.yaml",
+    "**/*.json",
+    "**/*.jsonc",
+    "**/*.toml",
+    "**/*.yml",
+    "**/*.yaml",
+    "**/*.md",
+    "**/*.css"
+  ]
+}
