@@ -46,8 +46,8 @@
     "eslint": "10.6.0",
     "eslint-plugin-astro": "1.7.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
-    "oxfmt": "^0.57.0",
-    "oxlint": "^1.72.0",
+    "oxfmt": "0.57.0",
+    "oxlint": "1.72.0",
     "typescript": "6.0.3",
     "vitest": "4.1.9"
   },
