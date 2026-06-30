@@ -17,7 +17,7 @@ Make sure to follow the following rules:
 
 ## Usage
 
-Requires Node.js 22.23.1 or higher. Clone this repository and run:
+Requires Node.js 24.18.0 or higher. Clone this repository and run:
 
 ```bash
 pnpm install

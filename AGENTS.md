@@ -19,7 +19,7 @@ Project-specific instructions for AI agents working on this codebase.
 - **Content:** Markdown + YAML frontmatter loaded via Astro Content Collections (`astro:content`)
 - **APIs:** GitHub (`@octokit/rest`)
 - **Hosting:** Netlify
-- **Node:** >= 22.23.1
+- **Node:** >= 24.18.0
 
 ## Project Structure
 
