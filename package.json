@@ -19,9 +19,9 @@
     "test:e2e": "playwright test --reporter=list"
   },
   "dependencies": {
-    "@astrojs/react": "5.0.4",
+    "@astrojs/react": "5.0.7",
     "@octokit/rest": "22.0.1",
-    "astro": "6.4.6",
+    "astro": "6.4.8",
     "date-fns": "4.1.0",
     "dotenv": "17.4.2",
     "fs-extra": "11.3.5",
@@ -32,7 +32,7 @@
     "slug": "11.0.1"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.8",
+    "@astrojs/check": "0.9.9",
     "@eslint/compat": "2.1.0",
     "@eslint/js": "10.0.1",
     "@playwright/test": "1.59.1",
