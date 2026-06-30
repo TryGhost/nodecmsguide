@@ -46,6 +46,8 @@ const {
   removeOutdated,
   updateArchive,
   archiveExpired,
+  getFixtureData,
+  shouldUseFixtureData,
   run,
   default: defaultRun,
 } = fetchArchive;
@@ -67,6 +69,7 @@ beforeEach(() => {
   _resetCacheForTesting();
   _setOctokitForTesting(mockOctokitInstance);
   delete process.env.NODE_CMS_USE_FIXTURE;
+  delete process.env.CONTEXT;
   process.env.NODE_CMS_GITHUB_TOKEN = 'test-token';
   // Silence console output from warn/log.
   vi.spyOn(console, 'warn').mockImplementation(() => {});
@@ -444,6 +447,63 @@ describe('run', () => {
     expect(mockOctokitInstance.rest.gists.create).not.toHaveBeenCalled();
     // Fixture mode reads the fixture file path.
     expect(mockFs.readJson.mock.calls[0][0]).toMatch(/test\/fixtures\/node-cms-archive\.json$/);
+  });
+
+  it('uses fixture data by default when no GitHub token is configured', async () => {
+    delete process.env.NODE_CMS_GITHUB_TOKEN;
+    const fixture = {
+      timestamp: 9999,
+      data: { ghost: [{ timestamp: 9999, stars: 1, forks: 1, issues: 1 }] },
+    };
+    mockFs.readJson.mockResolvedValue(fixture);
+
+    const result = await run([]);
+
+    expect(result).toEqual(fixture.data);
+    expect(MockOctokit).not.toHaveBeenCalled();
+    expect(mockOctokitInstance.paginate).not.toHaveBeenCalled();
+    expect(mockOctokitInstance.rest.repos.get).not.toHaveBeenCalled();
+    expect(mockFs.readJson).toHaveBeenCalledOnce();
+    expect(mockFs.readJson.mock.calls[0][0]).toMatch(/test\/fixtures\/node-cms-archive\.json$/);
+  });
+
+  it('getFixtureData returns the fixture payload data', async () => {
+    const fixture = {
+      timestamp: 9999,
+      data: { ghost: [{ timestamp: 9999, stars: 1, forks: 1, issues: 1 }] },
+    };
+    mockFs.readJson.mockResolvedValue(fixture);
+
+    await expect(getFixtureData()).resolves.toEqual(fixture.data);
+  });
+
+  it('does not use fixture data by default in production context', async () => {
+    delete process.env.NODE_CMS_GITHUB_TOKEN;
+    process.env.CONTEXT = 'production';
+    mockFs.readJson.mockRejectedValue(new Error('ENOENT'));
+
+    await expect(run([])).rejects.toThrow(/NODE_CMS_GITHUB_TOKEN/);
+
+    expect(MockOctokit).not.toHaveBeenCalled();
+    expect(mockFs.readJson).toHaveBeenCalledOnce();
+    expect(mockFs.readJson.mock.calls[0][0]).toMatch(/tmp\/node-cms-archive\.json$/);
+  });
+
+  it('shouldUseFixtureData respects fixture, local, token, and production settings', () => {
+    delete process.env.NODE_CMS_USE_FIXTURE;
+    delete process.env.NODE_CMS_GITHUB_TOKEN;
+    delete process.env.CONTEXT;
+    expect(shouldUseFixtureData()).toBe(true);
+
+    process.env.NODE_CMS_GITHUB_TOKEN = 'test-token';
+    expect(shouldUseFixtureData()).toBe(false);
+
+    delete process.env.NODE_CMS_GITHUB_TOKEN;
+    process.env.CONTEXT = 'production';
+    expect(shouldUseFixtureData()).toBe(false);
+
+    process.env.NODE_CMS_USE_FIXTURE = '1';
+    expect(shouldUseFixtureData()).toBe(true);
   });
 
   it('returns the in-memory cache on subsequent calls', async () => {

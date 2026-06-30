@@ -141,11 +141,25 @@ export function archiveExpired(archive) {
   return differenceInMinutes(Date.now(), archive.timestamp) > 1410;
 }
 
+export async function getFixtureData() {
+  const fixture = await fs.readJson(path.join(process.cwd(), FIXTURE_PATH));
+  return fixture.data;
+}
+
+export function shouldUseFixtureData() {
+  return (
+    process.env.NODE_CMS_USE_FIXTURE === '1' ||
+    (!process.env.NODE_CMS_GITHUB_TOKEN && process.env.CONTEXT !== 'production')
+  );
+}
+
 export async function run(projects) {
-  // Fixture mode short-circuit for CI / tests — never touches Octokit.
-  if (process.env.NODE_CMS_USE_FIXTURE === '1') {
-    const fixture = await fs.readJson(path.join(process.cwd(), FIXTURE_PATH));
-    return fixture.data;
+  // Local/dev builds default to deterministic fixture data unless a token is
+  // configured. CI can also force this path explicitly. Production keeps the
+  // live-data path so missing production credentials do not silently ship stale
+  // fixture metrics.
+  if (shouldUseFixtureData()) {
+    return getFixtureData();
   }
 
   // Return cached data if available (avoids redundant fetches during build)

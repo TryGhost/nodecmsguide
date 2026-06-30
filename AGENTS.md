@@ -103,19 +103,20 @@ Load projects/pages via `getCollection('projects')` / `getEntry('pages', slug)` 
 
 ## Environment Variables
 
-Required for build-time GitHub data fetching:
+Used for build-time GitHub data fetching:
 
-- `NODE_CMS_GITHUB_TOKEN` — GitHub personal access token with permission to create Gists
+- `NODE_CMS_GITHUB_TOKEN` — GitHub personal access token with permission to create Gists. When unset outside production, builds use the checked-in fixture data.
 - `NODE_CMS_USE_FIXTURE` — set to `1` to bypass GitHub entirely and load the checked-in fixture at `test/fixtures/node-cms-archive.json`. Used by CI and the test suite; not for production builds.
 
 For local development, create a `.env` file at the repo root. On Netlify, this is configured in the site's environment settings.
 
 ## Data Fetching
 
-GitHub metrics are fetched at build time by the scripts in `/scripts`:
+GitHub metrics are loaded at build time by the scripts in `/scripts`:
 
+- Local builds without `NODE_CMS_GITHUB_TOKEN` and CI builds with `NODE_CMS_USE_FIXTURE=1` use `test/fixtures/node-cms-archive.json`
 - Raw archive data is cached locally in `/tmp` and remotely in a GitHub Gist
-- If the cache is more than 24 hours old, fresh data is pulled from GitHub
+- Production builds should provide `NODE_CMS_GITHUB_TOKEN`; when it is set and the cache is more than 24 hours old, fresh data is pulled from GitHub
 - `project-data.js` compares newest data with data from ~1 week ago to compute trends
 
 To refresh production data, trigger a new Netlify deploy.
@@ -150,7 +151,7 @@ CI workflows live in `.github/workflows/`:
 Manual verification:
 
 1. `pnpm dev` — verify changes interactively
-2. `NODE_CMS_USE_FIXTURE=1 pnpm build && pnpm preview` — verify the production build without needing a GitHub token
+2. `pnpm build && pnpm preview` — verify the production build locally; without `NODE_CMS_GITHUB_TOKEN`, this uses fixture data
 
 ## Notes
 

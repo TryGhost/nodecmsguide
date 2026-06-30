@@ -2,7 +2,7 @@
 
 [nodecms.guide](https://nodecms.guide), a leaderboard of Node.js content management systems.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ff98559c-c0a7-498d-9989-27f09b139e6f/deploy-status)](https://app.netlify.com/sites/headlesscms/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ff98559c-c0a7-498d-9989-27f09b139e6f/deploy-status)](https://app.netlify.com/projects/nodecmsguide/deploys)
 
 ## Contributing
 
@@ -24,8 +24,13 @@ pnpm install
 pnpm dev
 ```
 
-In order to successfully retrieve GitHub stars, you will need authentication
-keys for the service.
+Then visit http://localhost:4321/ - Astro will automatically reload when changes occur.
+
+Local builds use the checked-in fixture data unless live GitHub data is
+configured. Production builds should provide live GitHub credentials.
+
+To retrieve live GitHub stars during a build, provide authentication keys for
+the service.
 
 You'll need a personal access token with permission to create Gists. This can be generated at
 <https://github.com/settings/tokens>. When deploying, you must set the environment
@@ -38,9 +43,12 @@ NODE_CMS_GITHUB_TOKEN=examplekey123abc
 
 GitHub data is cached in the `tmp` directory, and online in a Gist. If the data is
 more than 24 hours old, fresh data is fetched from GitHub. Fetching and caching occur
-automatically during the build.
+automatically during builds that use the live data path. CI also forces the
+fixture path explicitly:
 
-Then visit http://localhost:4321/ - Astro will automatically reload when changes occur.
+```bash
+NODE_CMS_USE_FIXTURE=1 pnpm build
+```
 
 To preview a production build locally:
 
