@@ -25,6 +25,23 @@ and update Gists because the archive is stored remotely as a Gist.
 
 The fetcher checks data sources in this order:
 
+```mermaid
+flowchart TD
+    Build["Astro build requests project metrics"] --> Fixture{"NODE_CMS_USE_FIXTURE=1?"}
+    Fixture -->|Yes| FixtureData["Read test/fixtures/node-cms-archive.json"]
+    Fixture -->|No| Memory{"Fresh in-memory data?"}
+    Memory -->|Yes| UseData["Use archive data"]
+    Memory -->|No| Local{"Fresh tmp/node-cms-archive.json?"}
+    Local -->|Yes| UseData
+    Local -->|No| Gist{"Fresh remote Gist archive?"}
+    Gist -->|Yes| SaveLocal["Write archive to tmp/"]
+    SaveLocal --> UseData
+    Gist -->|No| FetchGitHub["Fetch repository metrics from GitHub"]
+    FetchGitHub --> UpdateGist["Create or update archive Gist"]
+    UpdateGist --> WriteLocal["Write archive to tmp/"]
+    WriteLocal --> UseData
+```
+
 1. `NODE_CMS_USE_FIXTURE=1` returns the checked-in fixture immediately.
 2. A fresh in-memory result is reused within the same build process.
 3. A fresh `tmp/node-cms-archive.json` local archive is reused.
