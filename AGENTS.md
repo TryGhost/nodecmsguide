@@ -19,7 +19,7 @@ Project-specific instructions for AI agents working on this codebase.
 - **Content:** Markdown + YAML frontmatter loaded via Astro Content Collections (`astro:content`)
 - **APIs:** GitHub (`@octokit/rest`)
 - **Hosting:** Netlify
-- **Node:** >= 22
+- **Node:** >= 22.23.1
 
 ## Project Structure
 
@@ -45,13 +45,13 @@ Content collections are defined in `src/content.config.ts` with two collections:
 ## Development Commands
 
 ```bash
-yarn install        # Install dependencies
-yarn dev            # Astro dev server at http://localhost:4321
-yarn build          # Production build to /dist
-yarn preview        # Serve the production build locally
+pnpm install        # Install dependencies
+pnpm dev            # Astro dev server at http://localhost:4321
+pnpm build          # Production build to /dist
+pnpm preview        # Serve the production build locally
 ```
 
-There is no `yarn start`, `yarn stage`, or `yarn serve` script — don't reference them. Tests, lint, and typecheck scripts are documented under [Testing](#testing).
+There is no `pnpm start`, `pnpm stage`, or `pnpm serve` script — don't reference them. Tests, lint, and typecheck scripts are documented under [Testing](#testing).
 
 ## Adding a New CMS
 
@@ -133,24 +133,24 @@ To refresh production data, trigger a new Netlify deploy.
 Three layers of automated tests, all wired into CI:
 
 1. **Unit tests (vitest)** — `scripts/__tests__/*.test.js` cover `fetch-archive.js`, `project-data.js`, and `util.js`. 100% line coverage is enforced.
-   - `yarn test` — run once
-   - `yarn test:watch` — watch mode
-   - `yarn test:coverage` — with v8 coverage
+   - `pnpm test` — run once
+   - `pnpm test:watch` — watch mode
+   - `pnpm test:coverage` — with v8 coverage
 2. **End-to-end tests (Playwright)** — `tests/e2e/*.spec.ts` split into two kinds:
    - `build-output.spec.ts` — reads files from `dist/` to assert page structure, slug routing, and astro-island hydration markers. No browser required.
    - `render.spec.ts` — drives `astro preview` with real Chromium to verify hydration, client-side filtering, ShareButtons, and the 404 path.
-   - Run with `NODE_CMS_USE_FIXTURE=1 yarn build && NODE_CMS_USE_FIXTURE=1 yarn test:e2e`.
-3. **Quality gates** — `yarn lint` (ESLint flat config) and `yarn typecheck` (`astro check`) must pass.
+   - Run with `NODE_CMS_USE_FIXTURE=1 pnpm build && NODE_CMS_USE_FIXTURE=1 pnpm test:e2e`.
+3. **Quality gates** — `pnpm lint` (ESLint flat config) and `pnpm typecheck` (`astro check`) must pass.
 
 CI workflows live in `.github/workflows/`:
 
 - `ci.yml` — runs on every PR and push to main. Lint, typecheck, unit tests, build with fixture mode, and E2E. No secrets required.
-- `smoke.yml` — runs on a daily cron and on-demand via `workflow_dispatch`. Does a real `yarn build` against the live GitHub API using the `NODE_CMS_GITHUB_TOKEN` repo secret, then verifies the archive gist was updated. This is the only place the real gist-creation path is exercised.
+- `smoke.yml` — runs on a daily cron and on-demand via `workflow_dispatch`. Does a real `pnpm build` against the live GitHub API using the `NODE_CMS_GITHUB_TOKEN` repo secret, then verifies the archive gist was updated. This is the only place the real gist-creation path is exercised.
 
 Manual verification:
 
-1. `yarn dev` — verify changes interactively
-2. `NODE_CMS_USE_FIXTURE=1 yarn build && yarn preview` — verify the production build without needing a GitHub token
+1. `pnpm dev` — verify changes interactively
+2. `NODE_CMS_USE_FIXTURE=1 pnpm build && pnpm preview` — verify the production build without needing a GitHub token
 
 ## Notes
 

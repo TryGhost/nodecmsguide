@@ -1,9 +1,9 @@
 [build]
-  command = "yarn build"
+  command = "pnpm build"
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "22.23.1"
 
 [context.deploy-preview]
-  command = "yarn build"
+  command = "pnpm build"
