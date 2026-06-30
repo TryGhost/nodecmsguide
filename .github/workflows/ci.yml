@@ -16,76 +16,70 @@ permissions:
 
 jobs:
   lint-and-typecheck:
-    name: Lint & typecheck (Node ${{ matrix.node-version }})
+    name: Lint & typecheck (Node 22)
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [22.23.1, 24]
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .nvmrc
+      - name: Read Node version
+        id: node-version
+        run: echo "version=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
       - run: corepack enable
       - run: pnpm config set store-dir ~/.pnpm-store
       - name: Cache pnpm store
         uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: ~/.pnpm-store
-          key: pnpm-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            pnpm-${{ runner.os }}-${{ matrix.node-version }}-
+            pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm lint
       - run: pnpm typecheck
 
   unit-tests:
-    name: Unit tests (Node ${{ matrix.node-version }})
+    name: Unit tests (Node 22)
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [22.23.1, 24]
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .nvmrc
+      - name: Read Node version
+        id: node-version
+        run: echo "version=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
       - run: corepack enable
       - run: pnpm config set store-dir ~/.pnpm-store
       - name: Cache pnpm store
         uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: ~/.pnpm-store
-          key: pnpm-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            pnpm-${{ runner.os }}-${{ matrix.node-version }}-
+            pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm test:coverage
       - name: Upload coverage artifact
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
-          name: coverage-node-${{ matrix.node-version }}
+          name: coverage-node-${{ steps.node-version.outputs.version }}
           path: coverage/
           if-no-files-found: ignore
           retention-days: 7
 
   build:
-    name: Build (Node ${{ matrix.node-version }})
+    name: Build (Node 22)
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [22.23.1, 24]
     env:
       # Fixture mode keeps PRs off the real GitHub API — no secrets required,
       # deterministic output, fast. The scheduled smoke.yml workflow exercises
@@ -97,16 +91,19 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .nvmrc
+      - name: Read Node version
+        id: node-version
+        run: echo "version=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
       - run: corepack enable
       - run: pnpm config set store-dir ~/.pnpm-store
       - name: Cache pnpm store
         uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: ~/.pnpm-store
-          key: pnpm-${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            pnpm-${{ runner.os }}-${{ matrix.node-version }}-
+            pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm build
 
