@@ -38,14 +38,15 @@ NODE_CMS_GITHUB_TOKEN=examplekey123abc
 
 GitHub data is cached in the `tmp` directory, and online in a Gist. If the data is
 more than 24 hours old, fresh data is fetched from GitHub. Fetching and caching occur
-automatically during the build.
+automatically during the build. See [Data Fetching](docs/data-fetching.md) for
+the fixture mode, archive flow, CI behavior, and production deployment path.
 
 Then visit http://localhost:4321/ - Astro will automatically reload when changes occur.
 
 To preview a production build locally:
 
 ```bash
-pnpm build
+NODE_CMS_USE_FIXTURE=1 pnpm build
 pnpm preview
 ```
 
