@@ -16,42 +16,78 @@ permissions:
 
 jobs:
   lint-and-typecheck:
-    name: Lint & typecheck
+    name: Lint & typecheck (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [22, 24]
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
-          node-version: 24
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: ${{ matrix.node-version }}
           cache: yarn
       - run: yarn install --frozen-lockfile --ignore-scripts
       - run: yarn lint
       - run: yarn typecheck
 
   unit-tests:
-    name: Unit tests
+    name: Unit tests (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [22, 24]
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
-          node-version: 24
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: ${{ matrix.node-version }}
           cache: yarn
       - run: yarn install --frozen-lockfile --ignore-scripts
       - run: yarn test:coverage
       - name: Upload coverage artifact
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
-          name: coverage
+          name: coverage-node-${{ matrix.node-version }}
           path: coverage/
           if-no-files-found: ignore
           retention-days: 7
 
-  build-and-e2e:
-    name: Build & E2E
+  build:
+    name: Build (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [22, 24]
+    env:
+      # Fixture mode keeps PRs off the real GitHub API — no secrets required,
+      # deterministic output, fast. The scheduled smoke.yml workflow exercises
+      # the real-GitHub path separately.
+      NODE_CMS_USE_FIXTURE: '1'
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+      - run: yarn install --frozen-lockfile --ignore-scripts
+      - run: yarn build
+
+  e2e:
+    name: E2E (Node 22)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -60,17 +96,19 @@ jobs:
       # the real-GitHub path separately.
       NODE_CMS_USE_FIXTURE: '1'
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
-          node-version: 24
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: 22
           cache: yarn
       - run: yarn install --frozen-lockfile --ignore-scripts
 
       # Cache Playwright browsers keyed on the lockfile's @playwright/test entry.
       - name: Cache Playwright browsers
         id: playwright-cache
-        uses: actions/cache@v5
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
@@ -90,8 +128,18 @@ jobs:
 
       - name: Upload Playwright report
         if: failure()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 14
+
+  all-tests-pass:
+    name: All tests pass
+    if: always()
+    needs: [lint-and-typecheck, unit-tests, build, e2e]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify all required jobs succeeded
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
