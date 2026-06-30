@@ -12,7 +12,7 @@ Project-specific instructions for AI agents working on this codebase.
 
 ## Tech Stack
 
-- **Framework:** [Astro](https://astro.build/) 5.x (static output)
+- **Framework:** [Astro](https://astro.build/) 6.x (static output)
 - **Interactive Components:** React 19 via `@astrojs/react`
 - **Language:** TypeScript (strict, extends `astro/tsconfigs/strict`)
 - **Styling:** Plain CSS (`src/styles/global.css`) + scoped styles in `.astro` components
