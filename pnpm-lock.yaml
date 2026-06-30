@@ -79,10 +79,10 @@ importers:
         specifier: 6.10.2
         version: 6.10.2(eslint@10.6.0)
       oxfmt:
-        specifier: ^0.57.0
+        specifier: 0.57.0
         version: 0.57.0
       oxlint:
-        specifier: ^1.72.0
+        specifier: 1.72.0
         version: 1.72.0
       typescript:
         specifier: 6.0.3
