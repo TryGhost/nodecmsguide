@@ -142,7 +142,7 @@ Three layers of automated tests, all wired into CI:
    - `build-output.spec.ts` — reads files from `dist/` to assert page structure, slug routing, and astro-island hydration markers. No browser required.
    - `render.spec.ts` — drives `astro preview` with real Chromium to verify hydration, client-side filtering, ShareButtons, and the 404 path.
    - Run with `NODE_CMS_USE_FIXTURE=1 pnpm build && NODE_CMS_USE_FIXTURE=1 pnpm test:e2e`.
-3. **Quality gates** — `pnpm lint` (oxlint + Astro template ESLint + oxfmt) and `pnpm typecheck` (`astro check`) must pass.
+3. **Quality gates** — `pnpm lint` (oxlint + oxfmt) and `pnpm typecheck` (`astro check`) must pass.
 
 CI workflows live in `.github/workflows/`:
 
