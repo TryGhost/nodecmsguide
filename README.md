@@ -17,11 +17,11 @@ Make sure to follow the following rules:
 
 ## Usage
 
-Requires Node.js 22 or higher. Clone this repository and run:
+Requires Node.js 22.23.1 or higher. Clone this repository and run:
 
 ```bash
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 In order to successfully retrieve GitHub stars, you will need authentication
@@ -45,8 +45,8 @@ Then visit http://localhost:4321/ - Astro will automatically reload when changes
 To preview a production build locally:
 
 ```bash
-yarn build
-yarn preview
+pnpm build
+pnpm preview
 ```
 
 ## Tech Stack
