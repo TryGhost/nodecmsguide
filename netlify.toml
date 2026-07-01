@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "24.18.0"
+  PNPM_FLAGS = "--trust-lockfile"
 
 [context.deploy-preview]
   command = "pnpm build"
