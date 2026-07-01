@@ -41,7 +41,7 @@ jobs:
           key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
-      - run: pnpm install --frozen-lockfile --ignore-scripts --trust-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Build site (real GitHub + gist archive)
         env:

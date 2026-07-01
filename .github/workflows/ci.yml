@@ -38,7 +38,7 @@ jobs:
           key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
-      - run: pnpm install --frozen-lockfile --ignore-scripts --trust-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm lint
       - run: pnpm typecheck
 
@@ -65,7 +65,7 @@ jobs:
           key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
-      - run: pnpm install --frozen-lockfile --ignore-scripts --trust-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm test:coverage
       - name: Upload coverage artifact
         if: always()
@@ -104,7 +104,7 @@ jobs:
           key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
-      - run: pnpm install --frozen-lockfile --ignore-scripts --trust-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm build
 
   e2e:
@@ -135,7 +135,7 @@ jobs:
           key: pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             pnpm-${{ runner.os }}-${{ steps.node-version.outputs.version }}-
-      - run: pnpm install --frozen-lockfile --ignore-scripts --trust-lockfile
+      - run: pnpm install --frozen-lockfile --ignore-scripts
 
       # Cache Playwright browsers keyed on the lockfile's @playwright/test entry.
       - name: Cache Playwright browsers
