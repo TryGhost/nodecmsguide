@@ -166,8 +166,8 @@ jobs:
           path: playwright-report/
           retention-days: 14
 
-  all-tests-pass:
-    name: All tests pass
+  required-checks-pass:
+    name: Required checks pass
     if: always()
     needs: [lint-and-typecheck, unit-tests, build, e2e]
     runs-on: ubuntu-latest
