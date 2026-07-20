@@ -14,7 +14,7 @@
     "lint": "oxlint --quiet && oxfmt --check .",
     "lint:fix": "oxlint --fix && oxfmt .",
     "format": "oxfmt .",
-    "typecheck": "astro check",
+    "typecheck": "pnpm --dir tools/typecheck run typecheck",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -34,7 +34,6 @@
     "slug": "11.0.1"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.9",
     "@playwright/test": "1.61.1",
     "@types/fs-extra": "11.0.4",
     "@types/lodash-es": "4.17.12",

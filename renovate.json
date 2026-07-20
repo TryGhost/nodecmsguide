@@ -1,4 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>TryGhost/renovate-config"]
+  "extends": ["local>TryGhost/renovate-config"],
+  "packageRules": [
+    {
+      "description": "The typecheck importer isolates astro check (Volar) on TypeScript 6 — the native TS 7 compiler dropped the JS compiler API it needs. Lift once Astro supports TS 7: https://github.com/withastro/roadmap/discussions/1321",
+      "matchFileNames": ["tools/typecheck/package.json"],
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
+    }
+  ]
 }

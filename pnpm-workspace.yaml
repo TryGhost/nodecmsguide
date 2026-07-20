@@ -1,2 +1,7 @@
+packages:
+  # Isolated importer giving `astro check` its own TypeScript 6 — see
+  # tools/typecheck/package.json for the full rationale.
+  - tools/typecheck
+
 allowBuilds:
   esbuild: true
