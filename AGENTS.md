@@ -35,6 +35,8 @@ Project-specific instructions for AI agents working on this codebase.
   /images/          # Images referenced from components
   content.config.ts # Content collection schemas (zod)
 /scripts/           # Build-time data fetching (fetch-archive.js, project-data.js, util.js)
+/tools/typecheck/   # Workspace package isolating `astro check` on TypeScript 6 (Volar
+                    # needs TS's JS compiler API, removed in the native TS 7 the app uses)
 /public/            # Static assets served as-is (favicon, robots.txt, /images/*)
 /dist/              # Build output (gitignored)
 /tmp/               # Local cache for GitHub archive data
