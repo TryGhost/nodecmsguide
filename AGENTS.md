@@ -144,7 +144,7 @@ Three layers of automated tests, all wired into CI:
    - `build-output.spec.ts` — reads files from `dist/` to assert page structure, slug routing, and astro-island hydration markers. No browser required.
    - `render.spec.ts` — drives `astro preview` with real Chromium to verify hydration, client-side filtering, ShareButtons, and the 404 path.
    - Run with `NODE_CMS_USE_FIXTURE=1 pnpm build && NODE_CMS_USE_FIXTURE=1 pnpm test:e2e`.
-3. **Quality gates** — `pnpm lint` (oxlint + oxfmt) and `pnpm typecheck` (`astro check`) must pass.
+3. **Quality gates** — `pnpm lint` (oxlint + oxfmt) and `pnpm typecheck` must pass. Typechecking runs `astro sync`, then calls `@astrojs/check` from `tools/typecheck` with its TypeScript 6 peer. Do not replace this with `astro check`: since Astro 7.3.4 its CLI rejects the app's TypeScript 7 before loading the isolated checker.
 
 CI workflows live in `.github/workflows/`:
 
