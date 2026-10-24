@@ -8,8 +8,8 @@
     "typecheck": "astro sync --root ../.. && node check.js --root ../.."
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.11",
-    "astro": "7.4.1",
+    "@astrojs/check": "0.9.12",
+    "astro": "7.4.2",
     "typescript": "6.0.3"
   }
 }
