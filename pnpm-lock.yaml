@@ -173,8 +173,8 @@ importers:
         specifier: 22.0.1
         version: 22.0.1
       astro:
-        specifier: 7.4.4
-        version: 7.4.4(@types/node@26.6.6)(yaml@2.9.1)
+        specifier: 7.4.5
+        version: 7.4.5(@types/node@26.6.6)(yaml@2.9.1)
       date-fns:
         specifier: 4.4.0
         version: 4.4.0
@@ -240,8 +240,8 @@ importers:
         specifier: 0.9.12
         version: 0.9.12(@emnapi/runtime@1.11.3)(prettier@3.9.10)(typescript@6.0.3)
       astro:
-        specifier: 7.4.4
-        version: 7.4.4(@types/node@26.6.6)(yaml@2.9.1)
+        specifier: 7.4.5
+        version: 7.4.5(@types/node@26.6.6)(yaml@2.9.1)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -1425,8 +1425,8 @@ packages:
   ast-v8-to-istanbul@1.0.7:
     resolution: {integrity: sha512-kFL68AG6ajd8fg248zwM9GQrUWEp79gsmjum34OEXjs4yHuUMZfYKwOLW9GMmB4oNvVrj+EAGxsP7ye2UR9UlA==}
 
-  astro@7.4.4:
-    resolution: {integrity: sha512-e+BzhGCaIY/H1tV/BQPTbOPZVZ8wuu6+bbpc+3oSMH2UgoB1l9peSGASk6nswtYra9PO9OoMREhldKtQkZ5TVw==}
+  astro@7.4.5:
+    resolution: {integrity: sha512-n5lET11/qnrOWn4wNpXxD9g2VKkTIa162hHgrkMPChMQC5q/xh2lY2OerK5mpsEAFCNmXsYA7NISE+9Uo7Cxxg==}
     engines: {node: '>=22.23.4', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     peerDependencies:
@@ -3461,7 +3461,7 @@ snapshots:
       estree-walker: 3.0.3
       js-tokens: 10.0.0
 
-  astro@7.4.4(@types/node@26.6.6)(yaml@2.9.1):
+  astro@7.4.5(@types/node@26.6.6)(yaml@2.9.1):
     dependencies:
       '@astrojs/compiler-rs': 0.5.2
       '@astrojs/internal-helpers': 0.13.0
