@@ -21,9 +21,9 @@
     "test:e2e": "playwright test --reporter=list"
   },
   "dependencies": {
-    "@astrojs/react": "7.1.4",
+    "@astrojs/react": "7.1.5",
     "@octokit/rest": "22.0.1",
-    "astro": "7.4.7",
+    "astro": "7.4.8",
     "date-fns": "4.4.0",
     "dotenv": "18.0.10",
     "fs-extra": "11.4.1",
